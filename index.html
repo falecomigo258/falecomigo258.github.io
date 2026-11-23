@@ -54,11 +54,9 @@ footer{text-align:center;padding:20px 12px 40px;background:#fff;margin-top:20px}
 </div>
 <div class="bottom"><button id="btnInicio" class="active" onclick="mostrar('inicio')">🏠 Início</button><button id="btnConversa" onclick="mostrar('conversa')">💬 Conversa</button></div>
 <div id="adminPanel"><h2>🔐 Painel do Boss - Só Teu</h2><p>Desabafos: <span id="statDes">0</span> | Abraços: <span id="statAb">0</span> | Orações: <span id="statOr">0</span></p><label>Mensagem do Dia</label><input id="admMsgDia"><br><br><label>Palavras proibidas</label><input id="admBan" placeholder="ex: palavrão, ..."><br><br><label>Publicidade em cima</label><input id="admAd"><br><br><button class="btn-blue" onclick="salvarAdmin()">Guardar Tudo</button><br><br><h3>Pedidos de Voluntário</h3><div id="listaVol"></div><h3>Histórias para Aprovar</h3><div id="listaAprovar"></div><br><button onclick="fecharAdmin()" style="background:#eee;width:100%">Fechar Painel</button></div>
-
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script>
-/* ✅ JÁ LIGADO - TEU FIREBASE REAL */
 const firebaseConfig = {
   apiKey: "AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",
   authDomain: "falecomigo-fe950.firebaseapp.com",
