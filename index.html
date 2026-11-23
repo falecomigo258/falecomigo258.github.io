@@ -36,170 +36,67 @@ footer{text-align:center;padding:20px 12px 40px;background:#fff;margin-top:20px}
 </style>
 </head>
 <body>
-
-<div class="top-ad" id="topAd">
-  <div>✨ PUBLICIDADE ✨</div>
-  <img src="publicidade1.jpg" onerror="this.style.display='none'">
-  <div style="font-weight:normal;margin-top:6px">Deus é contigo - Você não está sozinho</div>
-</div>
-
-<!-- INICIO -->
+<div class="top-ad" id="topAd"><div>✨ PUBLICIDADE ✨</div><img src="publicidade1.jpg" onerror="this.style.display='none'"><div style="font-weight:normal;margin-top:6px">Deus é contigo - Você não está sozinho</div></div>
 <div id="pageInicio">
 <header><h1>FALE COMIGO</h1><h2>DEUS É CONTIGO</h2><div>100% Anónimo • Sem nome • Sem foto • Sem número</div></header>
 <div class="day">💬 <b>Mensagem do Dia:</b> <span id="fraseDia">Tu és mais forte do que pensas. Deus é contigo.</span><br><small id="fraseRotativa">Tu és mais forte do que pensas</small></div>
-
 <div class="card"><h3>🫂 Desabafa aqui</h3><textarea id="desabafoText" rows="4" placeholder="Escreve o que sentes... ninguém vai saber quem és."></textarea><br><br><button class="btn-blue" onclick="enviarDesabafo()">Enviar Desabafo</button><p class="small">Todo mundo vai ver. Todo mundo pode te abraçar e orar por ti.</p></div>
-
 <div class="card"><h3>💬 Desabafos dos Outros</h3><div id="listaDesabafos">A carregar desabafos de todo mundo...</div><br><button class="btn-light" style="width:100%" onclick="verMaisDes()">Ver Mais +</button></div>
-
-<div class="card" style="background:#eefbf3"><h3>🌱 Histórias de Quem Venceu</h3>
-<button class="btn-green" style="width:100%" onclick="document.getElementById('formHistoria').classList.toggle('hidden')">Eu Passei Por Isso E Venci</button>
-<div id="formHistoria" class="hidden" style="margin-top:12px"><textarea id="historiaText" rows="4" placeholder="Como eu me sentia e o que eu fiz para superar"></textarea><br><br><button class="btn-blue" onclick="enviarHistoria()">Partilhar História</button></div>
-<div id="listaHistorias"></div><br><button class="btn-light" style="width:100%" onclick="verMaisHis()">Ver Mais +</button></div>
-
-<div class="card"><h3>💙 Quero Ser Voluntário</h3><button class="btn-blue" onclick="document.getElementById('formVoluntario').classList.toggle('hidden')">Quero Ser Voluntário</button>
-<div id="formVoluntario" class="hidden" style="margin-top:12px"><textarea id="volText" rows="2">Sou voluntário, quero ajudar</textarea><br><br><input id="volContacto" placeholder="Teu contacto (só o Boss vê)"><br><br><button class="btn-green" onclick="enviarVoluntario()">Enviar para o Boss</button></div></div>
-
+<div class="card" style="background:#eefbf3"><h3>🌱 Histórias de Quem Venceu</h3><button class="btn-green" style="width:100%" onclick="document.getElementById('formHistoria').classList.toggle('hidden')">Eu Passei Por Isso E Venci</button><div id="formHistoria" class="hidden" style="margin-top:12px"><textarea id="historiaText" rows="4" placeholder="Como eu me sentia e o que eu fiz para superar"></textarea><br><br><button class="btn-blue" onclick="enviarHistoria()">Partilhar História</button></div><div id="listaHistorias"></div><br><button class="btn-light" style="width:100%" onclick="verMaisHis()">Ver Mais +</button></div>
+<div class="card"><h3>💙 Quero Ser Voluntário</h3><button class="btn-blue" onclick="document.getElementById('formVoluntario').classList.toggle('hidden')">Quero Ser Voluntário</button><div id="formVoluntario" class="hidden" style="margin-top:12px"><textarea id="volText" rows="2">Sou voluntário, quero ajudar</textarea><br><br><input id="volContacto" placeholder="Teu contacto (só o Boss vê)"><br><br><button class="btn-green" onclick="enviarVoluntario()">Enviar para o Boss</button></div></div>
 <div class="card" style="text-align:center"><button class="btn-green" style="width:100%;padding:16px" onclick="mostrar('conversa')">💬 Falar com alguém agora - 30 min</button></div>
-
 <footer><p><b>Obrigado por teres vindo. Volta quando precisares. Esta casa é tua.</b></p><p>WhatsApp: <b>833715054 / 874193775</b><br>Email: <b>juniorzamilo943@gmail.com</b></p><p id="portalSecreto" style="font-size:11px;color:#999;cursor:pointer">Deus é contigo</p><p class="small">Esperança • Fé • Acolhimento</p></footer>
 </div>
-
-<!-- CONVERSA -->
 <div id="pageConversa" class="hidden">
 <header><h2>💬 Conversa</h2><p>🟢 Online agora • 30 minutos • Apaga tudo sozinho</p></header>
-<div class="card">
-<div class="online"><span>Anónimo 1 🟢 Online</span><button onclick="entrarSala('sala1')">Conversar</button></div>
-<div class="online"><span>Anónimo 2 🟢 Online</span><button onclick="entrarSala('sala2')">Conversar</button></div>
-<div class="online"><span>Voluntário ✔️ 🟢 Online</span><button onclick="entrarSala('sala-vol')">Conversar</button></div>
-</div>
+<div class="card"><div class="online"><span>Anónimo 1 🟢 Online</span><button onclick="entrarSala('sala1')">Conversar</button></div><div class="online"><span>Anónimo 2 🟢 Online</span><button onclick="entrarSala('sala2')">Conversar</button></div><div class="online"><span>Voluntário ✔️ 🟢 Online</span><button onclick="entrarSala('sala-vol')">Conversar</button></div></div>
 <div class="card"><b id="chatCom">Escolhe alguém para conversar - Direto</b><div style="color:#e67e22">⏰ <span id="timer">30:00</span> restantes</div><div class="chat-box" id="chatBox"><div class="msg">Olá, estou aqui para te ouvir. Podes falar, é anónimo. 🙏</div></div><input id="chatInput" placeholder="Escreve aqui..."><br><br><button class="btn-blue" onclick="enviarChat()">Enviar</button></div>
 </div>
-
 <div class="bottom"><button id="btnInicio" class="active" onclick="mostrar('inicio')">🏠 Início</button><button id="btnConversa" onclick="mostrar('conversa')">💬 Conversa</button></div>
-
-<!-- PAINEL BOSS -->
 <div id="adminPanel"><h2>🔐 Painel do Boss - Só Teu</h2><p>Desabafos: <span id="statDes">0</span> | Abraços: <span id="statAb">0</span> | Orações: <span id="statOr">0</span></p><label>Mensagem do Dia</label><input id="admMsgDia"><br><br><label>Palavras proibidas</label><input id="admBan" placeholder="ex: palavrão, ..."><br><br><label>Publicidade em cima</label><input id="admAd"><br><br><button class="btn-blue" onclick="salvarAdmin()">Guardar Tudo</button><br><br><h3>Pedidos de Voluntário</h3><div id="listaVol"></div><h3>Histórias para Aprovar</h3><div id="listaAprovar"></div><br><button onclick="fecharAdmin()" style="background:#eee;width:100%">Fechar Painel</button></div>
 
-<!-- FIREBASE - NUVEM -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script>
-/* ⬇️ COLA AQUI O TEU CÓDIGO DO FIREBASE ⬇️ */
+/* ✅ JÁ LIGADO - TEU FIREBASE REAL */
 const firebaseConfig = {
-  apiKey: "COLA AQUI O TEU apiKey",
-  authDomain: "COLA AQUI",
-  databaseURL: "COLA AQUI",
-  projectId: "fale-comigo",
-  storageBucket: "COLA AQUI",
-  messagingSenderId: "COLA AQUI",
-  appId: "COLA AQUI"
+  apiKey: "AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",
+  authDomain: "falecomigo-fe950.firebaseapp.com",
+  databaseURL: "https://falecomigo-fe950-default-rtdb.firebaseio.com",
+  projectId: "falecomigo-fe950",
+  storageBucket: "falecomigo-fe950.firebasestorage.app",
+  messagingSenderId: "69315194447",
+  appId: "1:69315194447:web:b8ea8935dcbbaa1bb1043a",
+  measurementId: "G-42FW190YPR"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
-
 let limiteDes = 20, limiteHis = 20;
 let frases=["Tu és mais forte do que pensas","Deus nunca te abandona","Depois da noite vem o dia","Tu não estás sozinho","Deus tem um plano para ti"];
 let fi=0; setInterval(()=>{document.getElementById('fraseRotativa').textContent=frases[fi++%frases.length]},4000);
 let proibidas = (localStorage.getItem('ban')||'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
 function temProibido(t){return proibidas.some(p=>p && t.toLowerCase().includes(p))}
-
-// ENVIAR DESABAFO - TODO MUNDO VÊ
-function enviarDesabafo(){
-  let v=document.getElementById('desabafoText').value.trim();
-  if(!v) return alert('Escreve primeiro');
-  if(temProibido(v)) return alert('Mensagem bloqueada');
-  db.ref('desabafos').push({texto:v, abracos:0, oracoes:0, hora:Date.now()});
-  document.getElementById('desabafoText').value='';
-  if(v.toLowerCase().includes('quero desistir')) alert('⚠️ ALERTA BOSS: Alguém escreveu quero desistir - verifica WhatsApp');
-  alert('Desabafo enviado, todo mundo vai ver ❤️');
-}
-
-// VER DESABAFOS AO VIVO - TODO MUNDO, QUALQUER HORA, QUALQUER LUGAR
-db.ref('desabafos').orderByChild('hora').limitToLast(100).on('value', snap=>{
-  let arr=[]; snap.forEach(c=>{let d=c.val(); d._key=c.key; arr.push(d)});
-  arr.reverse();
-  document.getElementById('statDes').textContent = arr.length;
-  document.getElementById('listaDesabafos').innerHTML = arr.slice(0,limiteDes).map(d=>`<div class="post"><p>${d.texto}</p><div class="row"><button onclick="abracar('${d._key}',${d.abracos})">🫂 Abraço (${d.abracos})</button><button onclick="orar('${d._key}',${d.oracoes})">🙏 Vou Orar Por Ti (${d.oracoes})</button></div></div>`).join('') || 'Ainda não há desabafos. Sê o primeiro.';
-});
+function enviarDesabafo(){ let v=document.getElementById('desabafoText').value.trim(); if(!v) return alert('Escreve primeiro'); if(temProibido(v)) return alert('Mensagem bloqueada'); db.ref('desabafos').push({texto:v, abracos:0, oracoes:0, hora:Date.now()}); document.getElementById('desabafoText').value=''; if(v.toLowerCase().includes('quero desistir')) alert('⚠️ ALERTA BOSS: Alguém escreveu quero desistir - verifica WhatsApp'); alert('Desabafo enviado, todo mundo vai ver ❤️'); }
+db.ref('desabafos').orderByChild('hora').limitToLast(100).on('value', snap=>{ let arr=[]; snap.forEach(c=>{let d=c.val(); d._key=c.key; arr.push(d)}); arr.reverse(); document.getElementById('statDes').textContent = arr.length; document.getElementById('listaDesabafos').innerHTML = arr.slice(0,limiteDes).map(d=>`<div class="post"><p>${d.texto}</p><div class="row"><button onclick="abracar('${d._key}',${d.abracos})">🫂 Abraço (${d.abracos})</button><button onclick="orar('${d._key}',${d.oracoes})">🙏 Vou Orar Por Ti (${d.oracoes})</button></div></div>`).join('') || 'Ainda não há desabafos. Sê o primeiro.'; });
 function abracar(key,val){ db.ref('desabafos/'+key+'/abracos').set(val+1); }
 function orar(key,val){ db.ref('desabafos/'+key+'/oracoes').set(val+1); }
-function verMaisDes(){ limiteDes+=20; db.ref('desabafos').orderByChild('hora').limitToLast(100).once('value',()=>{}); location.reload(); }
-
-// HISTÓRIAS
-function enviarHistoria(){
-  let v=document.getElementById('historiaText').value.trim(); if(!v) return;
-  db.ref('historias').push({texto:v, abracos:0, ok:false, hora:Date.now()});
-  document.getElementById('historiaText').value=''; alert('História enviada para aprovação do Boss 🌱');
-}
-db.ref('historias').orderByChild('hora').on('value', snap=>{
-  let arr=[]; snap.forEach(c=>{let d=c.val(); d._key=c.key; arr.push(d)});
-  arr.reverse();
-  let aprov = arr.filter(h=>h.ok).sort((a,b)=>b.abracos-a.abracos);
-  document.getElementById('listaHistorias').innerHTML = aprov.slice(0,limiteHis).map(h=>`<div class="post"><p>${h.texto}</p><div class="row"><button onclick="abracarHis('${h._key}',${h.abracos})">🫂 Abraço (${h.abracos})</button><button>Obrigado por partilhar ❤️</button></div></div>`).join('') || 'Ainda não há histórias aprovadas.';
-  document.getElementById('listaAprovar').innerHTML = arr.map(h=>`<div class="post"><p>${h.texto} - ${h.ok?'✅ Aprovada':'⏳ Pendente'}</p><button onclick="aprovarHis('${h._key}')">Aprovar</button> <button onclick="apagarHis('${h._key}')">Apagar</button></div>`).join('');
-});
+function verMaisDes(){ limiteDes+=20; location.reload(); }
+function enviarHistoria(){ let v=document.getElementById('historiaText').value.trim(); if(!v) return; db.ref('historias').push({texto:v, abracos:0, ok:false, hora:Date.now()}); document.getElementById('historiaText').value=''; alert('História enviada para aprovação do Boss 🌱'); }
+db.ref('historias').orderByChild('hora').on('value', snap=>{ let arr=[]; snap.forEach(c=>{let d=c.val(); d._key=c.key; arr.push(d)}); arr.reverse(); let aprov = arr.filter(h=>h.ok).sort((a,b)=>b.abracos-a.abracos); document.getElementById('listaHistorias').innerHTML = aprov.slice(0,limiteHis).map(h=>`<div class="post"><p>${h.texto}</p><div class="row"><button onclick="abracarHis('${h._key}',${h.abracos})">🫂 Abraço (${h.abracos})</button><button>Obrigado por partilhar ❤️</button></div></div>`).join('') || 'Ainda não há histórias aprovadas.'; document.getElementById('listaAprovar').innerHTML = arr.map(h=>`<div class="post"><p>${h.texto} - ${h.ok?'✅ Aprovada':'⏳ Pendente'}</p><button onclick="aprovarHis('${h._key}')">Aprovar</button> <button onclick="apagarHis('${h._key}')">Apagar</button></div>`).join(''); });
 function abracarHis(key,val){ db.ref('historias/'+key+'/abracos').set(val+1); }
 function aprovarHis(key){ db.ref('historias/'+key+'/ok').set(true); }
 function apagarHis(key){ db.ref('historias/'+key).remove(); }
 function verMaisHis(){ limiteHis+=20; }
-
-// VOLUNTÁRIO
 function enviarVoluntario(){ let t=document.getElementById('volText').value; let c=document.getElementById('volContacto').value; db.ref('voluntarios').push({texto:t, contacto:c}); alert('Enviado para o Boss! ❤️'); }
 db.ref('voluntarios').on('value', snap=>{ let html=''; snap.forEach(c=>{let v=c.val(); html+=`<div class="post"><p>${v.texto}<br><small>Contacto (só Boss): ${v.contacto}</small></p><button>Aprovar + Disponibilizar Número</button></div>`}); document.getElementById('listaVol').innerHTML = html || 'Sem pedidos.'; });
-
-// CONVERSA DIRETA - ELA ESCREVE, OUTRA RESPONDE NA HORA
-let salaAtual = 'sala1';
-let segundos = 1800, chatTimer = null;
-function entrarSala(sala){
-  salaAtual = sala;
-  document.getElementById('chatCom').textContent = 'A falar em '+sala+' - Privado, Direto, 30 min';
-  document.getElementById('chatBox').innerHTML = `<div class="msg">Entraste na ${sala}. Fala, alguém vai responder direto. 🙏</div>`;
-  segundos = 1800; clearInterval(chatTimer);
-  chatTimer = setInterval(()=>{
-    segundos--; let m=Math.floor(segundos/60), s=segundos%60;
-    document.getElementById('timer').textContent = `${m}:${s<10?'0':''}${s}`;
-    if(segundos<=0){ clearInterval(chatTimer); db.ref('conversas/'+salaAtual).remove(); document.getElementById('chatBox').innerHTML='Conversa terminou. Apagado tudo ❤️'; alert('30 minutos acabaram. Conversa apagada.'); }
-  },1000);
-  // OUVIR AO VIVO - SEM CARREGAR
-  db.ref('conversas/'+salaAtual).off();
-  db.ref('conversas/'+salaAtual).on('child_added', snap=>{
-    let m=snap.val();
-    document.getElementById('chatBox').innerHTML += `<div class="msg">${m.texto}</div>`;
-    document.getElementById('chatBox').scrollTop = 9999;
-  });
-}
-function enviarChat(){
-  let v=document.getElementById('chatInput').value.trim(); if(!v) return;
-  db.ref('conversas/'+salaAtual).push({texto:v, hora:Date.now()});
-  document.getElementById('chatInput').value='';
-}
+let salaAtual = 'sala1'; let segundos = 1800, chatTimer = null;
+function entrarSala(sala){ salaAtual = sala; document.getElementById('chatCom').textContent = 'A falar em '+sala+' - Privado, Direto, 30 min'; document.getElementById('chatBox').innerHTML = `<div class="msg">Entraste na ${sala}. Fala, alguém vai responder direto. 🙏</div>`; segundos = 1800; clearInterval(chatTimer); chatTimer = setInterval(()=>{ segundos--; let m=Math.floor(segundos/60), s=segundos%60; document.getElementById('timer').textContent = `${m}:${s<10?'0':''}${s}`; if(segundos<=0){ clearInterval(chatTimer); db.ref('conversas/'+salaAtual).remove(); document.getElementById('chatBox').innerHTML='Conversa terminou. Apagado tudo ❤️'; alert('30 minutos acabaram. Conversa apagada.'); } },1000); db.ref('conversas/'+salaAtual).off(); db.ref('conversas/'+salaAtual).on('child_added', snap=>{ let m=snap.val(); document.getElementById('chatBox').innerHTML += `<div class="msg">${m.texto}</div>`; document.getElementById('chatBox').scrollTop = 9999; }); }
+function enviarChat(){ let v=document.getElementById('chatInput').value.trim(); if(!v) return; db.ref('conversas/'+salaAtual).push({texto:v, hora:Date.now()}); document.getElementById('chatInput').value=''; }
 entrarSala('sala1');
-
 function mostrar(p){ document.getElementById('pageInicio').classList.toggle('hidden',p!=='inicio'); document.getElementById('pageConversa').classList.toggle('hidden',p!=='conversa'); document.getElementById('btnInicio').classList.toggle('active',p=='inicio'); document.getElementById('btnConversa').classList.toggle('active',p=='conversa'); }
-
-// PAINEL SECRETO - 7 TOQUES + AMÉM + TUA PALAVRA-PASSE
-let toques=0;
-document.getElementById('portalSecreto').onclick=()=>{
-  toques++;
-  if(toques>=7){
-    toques=0;
-    let a=prompt('Escreva Amém');
-    if(a!==null){
-      let senha=prompt('Escreva a tua palavra-passe secreta');
-      if(senha==='9o9o8i6g4j5p'){ document.getElementById('adminPanel').style.display='block'; }
-      else alert('Palavra-passe errada');
-    }
-  }
-};
+let toques=0; document.getElementById('portalSecreto').onclick=()=>{ toques++; if(toques>=7){ toques=0; let a=prompt('Escreva Amém'); if(a!==null){ let senha=prompt('Escreva a tua palavra-passe secreta'); if(senha==='9o9o8i6g4j5p'){ document.getElementById('adminPanel').style.display='block'; } else alert('Palavra-passe errada'); } } };
 function fecharAdmin(){ document.getElementById('adminPanel').style.display='none'; }
-function salvarAdmin(){
-  let m=document.getElementById('admMsgDia').value; if(m) document.getElementById('fraseDia').textContent=m;
-  localStorage.setItem('ban', document.getElementById('admBan').value);
-  proibidas = document.getElementById('admBan').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
-  let ad=document.getElementById('admAd').value; if(ad) document.getElementById('topAd').innerHTML=ad;
-  alert('Guardado, Boss!');
-}
+function salvarAdmin(){ let m=document.getElementById('admMsgDia').value; if(m) document.getElementById('fraseDia').textContent=m; localStorage.setItem('ban', document.getElementById('admBan').value); proibidas = document.getElementById('admBan').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean); let ad=document.getElementById('admAd').value; if(ad) document.getElementById('topAd').innerHTML=ad; alert('Guardado, Boss!'); }
 </script>
 </body>
 </html>
