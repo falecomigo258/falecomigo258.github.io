@@ -2,129 +2,122 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FALE COMIGO - DEUS É CONTIGO</title>
+<title>FALE COMIGO</title>
 <style>
-:root{--bg:#1A2B4A;--card:#263A66;--card2:#2A3F6B;--text:#fff;--muted:#A9B8D4;--gold:#E8C268;--line:rgba(232,194,104,.25)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Arial;padding-bottom:110px}
-.top{display:flex;justify-content:space-between;padding:14px 16px}.pill{border:1.5px solid var(--gold);background:rgba(255,255,255,.06);color:var(--text);padding:7px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-.hero{padding:18px 20px 8px}.hero h1{margin:0;font-size:44px;line-height:.95;font-weight:900}.hero h2{margin:8px 0 0;color:var(--gold);font-size:34px;font-family:Georgia,serif;font-style:italic;cursor:pointer;user-select:none}.hero p{color:var(--muted);margin:10px 0}
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:10px 16px}.stat{background:#2A3F6B;border:1px solid var(--line);border-radius:18px;padding:14px 8px;text-align:center}.stat b{font-size:22px;display:block}.stat span{font-size:12px;color:var(--gold);font-weight:700}
-.card{margin:12px 16px;background:#263A66;border:1px solid var(--line);border-radius:22px;padding:16px}.card h3{margin:0 0 8px}
-textarea,input,select{width:100%;border:1px solid #ccc;background:#fff;color:#111;border-radius:14px;padding:13px;outline:none;font-size:15px}
-.btn{width:100%;background:#E8C268;color:#1A2B4A;border:0;padding:14px;border-radius:14px;font-weight:900;cursor:pointer;margin-top:10px;font-size:15px}
-.post{background:#263A66;border:1px solid var(--line);border-radius:22px;padding:16px;margin:12px 16px}.post-top{display:flex;gap:12px;align-items:center}.av{width:52px;height:52px;border-radius:50%;color:var(--gold);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px}
-.row{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}.btn2{background:#2A3F6B;color:#FFE9A8;border:1.2px solid var(--gold);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;min-width:68px}.btn2.report{border-color:#FF6B6B;color:#FF9A9A;background:#3A1F2A}
-.bottom{position:fixed;left:12px;right:12px;bottom:12px;background:rgba(36,54,95,.95);border:1px solid var(--line);display:flex;justify-content:space-around;padding:14px 0;border-radius:28px;z-index:50}.bottom button{background:none;border:0;cursor:pointer;color:#A9B8D4;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:13px;font-weight:700}.bottom button.on{color:var(--gold)}
-.footer{margin:18px 16px 8px;text-align:center}.footer a{color:#fff;text-decoration:none;font-size:15px;font-weight:700}.footer .email{color:var(--muted);font-size:13px;margin-top:6px;display:block}.rules{text-align:left;font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
-.hidden{display:none!important}.small{font-size:12px;color:var(--muted)}#chatBox{height:260px;overflow:auto;background:var(--bg);border-radius:14px;padding:10px;border:1px solid var(--line)}.msg{background:var(--card2);padding:8px 10px;border-radius:12px;margin:6px 0;font-size:14px}.timer{color:#FF6B6B;font-weight:700}
-#notif{position:fixed;top:12px;left:14px;right:14px;background:#FFC107;color:#111;padding:12px;border-radius:14px;font-weight:700;display:none;z-index:99;cursor:pointer}
-.ads{margin:12px 16px;background:#fff;border-radius:20px;min-height:250px;display:flex;align-items:center;justify-content:center;overflow:hidden}.ads img,.ads video{width:100%;height:280px;object-fit:cover}.online{display:flex;gap:8px;overflow:auto}.user{white-space:nowrap;background:var(--card2);border:1px solid var(--line);padding:8px 10px;border-radius:999px;font-size:13px;cursor:pointer}
-#secretModal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:999;padding:20px}#secretModal .box{background:#fff;color:#111;border-radius:20px;padding:22px;width:100%;max-width:340px;text-align:center}#secretModal input{border:1px solid #ddd;margin:12px 0}
+body{margin:0;background:#1A2B4A;color:#fff;font-family:Arial;padding-bottom:100px}
+.top{display:flex;justify-content:space-between;padding:14px}
+.pill{border:1px solid #E8C268;background:#2A3F6B;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.hero{padding:10px 20px}.hero h1{margin:0;font-size:42px}.hero h2{color:#E8C268;font-size:32px;margin:5px 0;cursor:pointer}
+.card{margin:12px;background:#263A66;border-radius:20px;padding:16px}
+textarea,input,select{width:100%;padding:12px;border-radius:12px;border:0;font-size:15px;box-sizing:border-box}
+.btn{width:100%;background:#E8C268;color:#1A2B4A;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
+.post{background:#263A66;border-radius:20px;padding:16px;margin:12px}.btn2{background:#2A3F6B;color:#FFE9A8;border:1px solid #E8C268;padding:6px 10px;border-radius:999px;margin:3px;cursor:pointer}
+.hidden{display:none!important}.bottom{position:fixed;left:12px;right:12px;bottom:12px;background:#24365F;display:flex;justify-content:space-around;padding:12px;border-radius:25px}.bottom button{background:none;border:0;color:#fff;cursor:pointer}
+#secretModal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}#secretModal .box{background:#fff;color:#111;border-radius:20px;padding:20px;width:100%;max-width:320px;text-align:center}
 </style>
 </head>
 <body>
-<div id="notif" onclick="this.style.display='none'">Nova mensagem!</div>
-<div class="top"><button class="pill">PT 🇵🇹</button><button class="pill" onclick="document.body.classList.toggle('light')">☀️ 🌙</button></div>
-<div class="ads" id="adsTop"><div style="color:#999;font-size:28px">▶ Publicidade aqui</div></div>
-<div class="hero"><h1>FALE COMIGO</h1><h2 onclick="secretClick()">DEUS É CONTIGO ✨</h2><p>Anónimo • Sem julgamentos • Deus contigo</p></div>
-<div class="stats"><div class="stat">👁️<br><span>Visitas</span><b id="cVisit">0</b></div><div class="stat">💬<br><span>Desabafos</span><b id="cPost">0</b></div><div class="stat">🟢<br><span>Online</span><b id="cOnline">1</b></div></div>
-<div class="card"><h3>✨ Mensagem do Dia</h3><p id="msgDia" style="margin:0;line-height:1.5">Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. — Isaías 41:10</p></div>
-<div class="card"><h3>Desabafa aqui</h3><textarea id="txt" rows="3" placeholder="Escreva aqui... Deus está a ouvir-te"></textarea><select id="duracao" style="margin-top:10px"><option value="72">72 horas</option><option value="168">1 semana</option><option value="0" selected>Para sempre</option></select><button class="btn" onclick="sendPost()">Enviar Desabafo</button><p class="small">Recebes um código para apagar depois.</p></div>
-<div class="card"><h3>Quem está online</h3><div class="online" id="onlineList"></div></div>
+<div class="top"><button class="pill" id="langBtn" onclick="trocaIdioma()">PT 🇵🇹</button><button class="pill" onclick="alert('Tema mudado')">☀️ 🌙</button></div>
+<div class="hero"><h1 id="t1">FALE COMIGO</h1><h2 id="t2" onclick="secretClick()">DEUS É CONTIGO ✨</h2><p id="t3">Anónimo • Sem julgamentos</p></div>
+<div class="card"><h3 id="t4">Desabafa aqui</h3><textarea id="txt" rows="3" placeholder="Escreva aqui..."></textarea><button class="btn" id="t5" onclick="sendPost()">Enviar Desabafo</button><p style="font-size:12px;color:#A9B8D4">Recebes um código para apagar depois.</p></div>
 <div id="feed"></div>
-<div style="text-align:center"><button class="pill" onclick="loadMorePosts()">Carregar mais ↓</button></div>
-<div class="card hidden" id="privateBox"><h3>Conversa privada - <span id="withWho">Anónimo</span> <span class="timer" id="timer">60:00</span></h3><div id="typing"></div><div id="chatBox"></div><div style="display:flex;gap:8px;margin-top:8px"><input id="chatIn" placeholder="Escreva..." oninput="setTyping()"><button class="pill" onclick="sendChat()">➤</button><button class="pill" onclick="toggleAudio()">🎤</button></div><button class="pill" style="margin-top:8px;width:100%" onclick="closeChat()">Fechar</button></div>
-<div class="card"><h3>Ser Voluntário</h3><input id="vNome" placeholder="Nome"><input id="vNum" placeholder="WhatsApp ex: 833715054" style="margin-top:8px"><button class="btn" onclick="beVolunteer()">Quero Ajudar ❤️</button></div>
-<div class="card"><h3>Voluntários Aprovados</h3><div id="approvedList"><p class="small">Nenhum ainda.</p></div></div>
-<div class="card"><h3>Apagar meu desabafo</h3><input id="delCode" placeholder="Código ex: 4829"><button class="btn" onclick="deleteMyPost()">Apagar com Código</button></div>
-<div id="adminArea" class="hidden"><div class="card"><div style="background:#fff;color:#111;border-radius:16px;padding:14px"><b>PAINEL - SÓ BOSS</b><p>Visitas: <span id="rVisit">0</span> | Desabafos: <span id="rPost">0</span><br>Conversas: <span id="rChat">0</span> | Denúncias: <span id="rReport">0</span><br>Online: <span id="rOnline">0</span> | Cliques anúncio: <span id="rAd">0</span></p><label>Mensagem do Dia:</label><input id="newMsgDia"><button class="btn" onclick="saveMsgDia()">Guardar</button><button class="btn" onclick="aiPublish()">IA Publicar Versículo Agora</button><button class="btn" onclick="doBackup()">Backup Agora / Baixar</button><label style="margin-top:10px;display:block">Foto / Vídeo publicidade:</label><input type="file" accept="image/*,video/*" onchange="uploadAds(event)"><button class="btn" onclick="clearAds()">Apagar Publicidade</button><h4>Denúncias</h4><div id="reportList"></div><h4>Voluntários</h4><div id="volList"></div><h4>Backup</h4><div id="backupList"></div><button class="btn" style="background:#ddd" onclick="closeAdmin()">Fechar Painel</button></div></div></div>
-<div class="footer"><a href="https://wa.me/258833715054">💬 +258 83 371 5054</a><span class="email">juniorzamilo943@gmail.com</span><div class="rules"><b style="color:#fff">Regras:</b><br>1. Respeita todos, sem insultos<br>2. Sem pornografia, sem links estranhos<br>3. Sem pedir dinheiro ou número no desabafo público<br>4. O Boss pode apagar quem não respeitar</div></div>
-<div class="bottom"><button class="on" onclick="goHome()"><span style="font-size:24px">🏠</span>Home</button><button onclick="goConversa()"><span style="font-size:24px">💬</span>Conversa</button></div>
-<div id="secretModal"><div class="box"><h2 style="margin:0">🙏 Amém</h2><p style="color:#666;font-size:14px">Escreve o código do Boss</p><input id="secretInput" type="password" placeholder="Código secreto"><button class="btn" onclick="checkSecret()">Entrar</button><button class="pill" style="margin-top:10px;color:#111" onclick="closeSecret()">Cancelar</button></div></div>
+<div class="card"><h3>Ser Voluntário</h3><input id="vNome" placeholder="Nome"><input id="vNum" placeholder="WhatsApp" style="margin-top:8px"><button class="btn" onclick="beVolunteer()">Quero Ajudar ❤️</button></div>
+<div class="card"><h3>Apagar meu desabafo</h3><input id="delCode" placeholder="Código"><button class="btn" onclick="deleteMyPost()">Apagar com Código</button></div>
+<div id="adminArea" class="hidden"><div class="card"><div style="background:#fff;color:#111;border-radius:16px;padding:14px"><b>PAINEL BOSS</b><p>Visitas: <span id="rVisit">0</span> | Desabafos: <span id="rPost">0</span></p><button class="btn" onclick="closeAdmin()">Fechar</button></div></div></div>
+<div class="bottom"><button onclick="window.scrollTo(0,0)">🏠 Home</button><button onclick="alert('Conversa')">💬 Conversa</button></div>
+<div id="secretModal"><div class="box"><h2>🙏 Amém</h2><input id="secretInput" type="password" placeholder="Código"><button class="btn" onclick="checkSecret()">Entrar</button><button class="pill" style="color:#111;margin-top:10px" onclick="closeSecret()">Cancelar</button></div></div>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script>
-var _clicks=0,_lastClick=0;
-function secretClick(){var n=Date.now();if(n-_lastClick>2000)_clicks=0;_lastClick=n;_clicks++;if(_clicks>=6){_clicks=0;document.getElementById('secretModal').style.display='flex';}}
-function closeSecret(){document.getElementById('secretModal').style.display='none';}
-var _k=[57,111,57,48,57,55,51,103,119,105,53,51];
-function checkSecret(){var v=document.getElementById('secretInput').value.trim();var ok=true;if(v.length!==_k.length)ok=false;else{for(var i=0;i<_k.length;i++){if(v.charCodeAt(i)!==_k[i]){ok=false;break;}}}if(ok){closeSecret();document.getElementById('secretInput').value='';document.getElementById('adminArea').classList.remove('hidden');document.getElementById('adminArea').scrollIntoView();loadVolunteers();loadReports();loadBackups();}else{alert('Código errado');}}
-function closeAdmin(){document.getElementById('adminArea').classList.add('hidden');}
-var firebaseConfig={apiKey:"AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",authDomain:"falecomigo-fe950.firebaseapp.com",databaseURL:"https://falecomigo-fe950-default-rtdb.firebaseio.com",projectId:"falecomigo-fe950",storageBucket:"falecomigo-fe950.firebasestorage.app",messagingSenderId:"69315194447",appId:"1:69315194447:web:b8ea8935dcbbaa1bb1043a"};
+var langPT = true;
+function trocaIdioma(){
+  langPT = !langPT;
+  if(langPT){
+    document.getElementById("langBtn").innerText = "PT 🇵🇹";
+    document.getElementById("t1").innerText = "FALE COMIGO";
+    document.getElementById("t2").innerText = "DEUS É CONTIGO ✨";
+    document.getElementById("t3").innerText = "Anónimo • Sem julgamentos";
+    document.getElementById("t4").innerText = "Desabafa aqui";
+    document.getElementById("t5").innerText = "Enviar Desabafo";
+  } else {
+    document.getElementById("langBtn").innerText = "EN 🇬🇧";
+    document.getElementById("t1").innerText = "TALK TO ME";
+    document.getElementById("t2").innerText = "GOD IS WITH YOU ✨";
+    document.getElementById("t3").innerText = "Anonymous • No judgment";
+    document.getElementById("t4").innerText = "Share here";
+    document.getElementById("t5").innerText = "Send";
+  }
+  alert("Idioma trocado!");
+}
+var _clicks = 0;
+function secretClick(){
+  _clicks++;
+  if(_clicks >= 6){ _clicks = 0; document.getElementById("secretModal").style.display = "flex"; }
+}
+function closeSecret(){ document.getElementById("secretModal").style.display = "none"; }
+function checkSecret(){
+  var v = document.getElementById("secretInput").value;
+  if(v === "9o90973gwi53"){
+    closeSecret();
+    document.getElementById("adminArea").classList.remove("hidden");
+    alert("Bem-vindo Boss!");
+  } else { alert("Código errado"); }
+}
+function closeAdmin(){ document.getElementById("adminArea").classList.add("hidden"); }
+var firebaseConfig = {apiKey:"AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",authDomain:"falecomigo-fe950.firebaseapp.com",databaseURL:"https://falecomigo-fe950-default-rtdb.firebaseio.com",projectId:"falecomigo-fe950",storageBucket:"falecomigo-fe950.firebasestorage.app",messagingSenderId:"69315194447",appId:"1:69315194447:web:b8ea8935dcbbaa1bb1043a"};
 firebase.initializeApp(firebaseConfig);
-var db=firebase.database();
-try{firebase.auth().signInAnonymously().catch(function(){});}catch(e){}
-var myId=localStorage.getItem("myAnon")||("Anónimo "+Math.floor(100+Math.random()*900));
-localStorage.setItem("myAnon",myId);
-var myLetter=myId.replace("Anónimo ","").charAt(0)||"A";
-var allPosts={};
-var searchTerm="";
-function filterBad(t){if(!t)return "";var r=t;var bad=["porra","merda","caralho","puta","porn","sexo","xxx","onlyfans"];bad.forEach(function(w){r=r.split(w).join("***");});return r;}
-var deviceId=localStorage.getItem("deviceId");
-if(!deviceId){deviceId="dev_"+Date.now();localStorage.setItem("deviceId",deviceId);}
-var todayDay=new Date().toDateString();
-if(localStorage.getItem("lastVisitDay")!==todayDay){try{db.ref("statsReal/totalVisits").transaction(function(v){return (v||0)+1;});}catch(e){}localStorage.setItem("lastVisitDay",todayDay);}
-function adClicked(){try{db.ref("statsReal/adClicks").transaction(function(v){return (v||0)+1;});}catch(e){}}
-db.ref("statsReal/totalVisits").on("value",function(s){document.getElementById("cVisit").innerText=s.val()||0;var e=document.getElementById("rVisit");if(e)e.innerText=s.val()||0;});
-db.ref("statsReal/adClicks").on("value",function(s){var e=document.getElementById("rAd");if(e)e.innerText=s.val()||0;});
-function goHome(){window.scrollTo({top:0,behavior:"smooth"});}
-function goConversa(){document.getElementById("privateBox").scrollIntoView({behavior:"smooth"});}
-db.ref("msgDia").on("value",function(s){if(s.val())document.getElementById("msgDia").innerText=s.val();});
-function saveMsgDia(){db.ref("msgDia").set(document.getElementById("newMsgDia").value);alert("Guardado");}
-try{db.ref("online/"+myId).set(true);db.ref("online/"+myId).onDisconnect().remove();}catch(e){}
-db.ref("online").on("value",function(s){var o=s.val()||{};document.getElementById("cOnline").innerText=Object.keys(o).length;var re=document.getElementById("rOnline");if(re)re.innerText=Object.keys(o).length;var h="";Object.keys(o).forEach(function(u){if(u!==myId)h+='<span class="user" onclick="startPrivate(\''+u+'\')">🟢 '+u+' • Conversar</span>';});document.getElementById("onlineList").innerHTML=h||"Só tu online agora";});
-var lastPostTime=0;
+var db = firebase.database();
+try{ firebase.auth().signInAnonymously(); }catch(e){}
+var myId = localStorage.getItem("myAnon") || ("Anónimo " + Math.floor(100+Math.random()*900));
+localStorage.setItem("myAnon", myId);
+var allPosts = {};
+var lastPostTime = 0;
 function sendPost(){
-var now=Date.now();
-if(now-lastPostTime<60000){alert("Espera 1 minuto para publicar outro.");return;}
-var t=document.getElementById("txt").value.trim();
-if(!t){alert("Escreve alguma coisa primeiro");return;}
-t=filterBad(t);
-var dur=document.getElementById("duracao").value;
-var expire=0;
-if(dur!=="0")expire=Date.now()+(parseInt(dur)*60*60*1000);
-var code=Math.floor(1000+Math.random()*9000);
-db.ref("posts").push({text:t,time:Date.now(),hug:0,pray:0,heart:0,commentsCount:0,code:code,letter:myLetter,expire:expire,reported:0}).then(function(){document.getElementById("txt").value="";alert("Publicado! Código: "+code);}).catch(function(e){alert("Erro ao publicar: "+e.message);});
-lastPostTime=now;
+  alert("Botão clicado! A tentar publicar...");
+  var now = Date.now();
+  if(now - lastPostTime < 60000){ alert("Espera 1 minuto"); return; }
+  var t = document.getElementById("txt").value.trim();
+  if(!t){ alert("Escreve alguma coisa primeiro"); return; }
+  var code = Math.floor(1000+Math.random()*9000);
+  db.ref("posts").push({text:t, time:Date.now(), hug:0, heart:0, pray:0, code:code, letter:"A"}).then(function(){
+    document.getElementById("txt").value = "";
+    alert("Publicado! Código: " + code);
+  }).catch(function(e){ alert("Erro Firebase: " + e.message); });
+  lastPostTime = now;
 }
-function deleteMyPost(){var c=document.getElementById("delCode").value.trim();if(!c){alert("Coloca o código");return;}var found=null;Object.keys(allPosts).forEach(function(k){if(String(allPosts[k].code)===c)found=k;});if(!found){alert("Código errado");return;}db.ref("posts/"+found).remove();alert("Apagado!");}
-function reportPost(id){if(!confirm("Denunciar?"))return;db.ref("posts/"+id+"/reported").transaction(function(v){return (v||0)+1;});db.ref("reports").push({postId:id,text:allPosts[id]?allPosts[id].text:"",time:Date.now(),by:myId});alert("Denunciado.");}
+function react(id, type){
+  alert("Reação: " + type);
+  db.ref("posts/" + id + "/" + type).transaction(function(v){ return (v||0)+1; });
+}
+function deleteMyPost(){
+  var c = document.getElementById("delCode").value.trim();
+  var found = null;
+  Object.keys(allPosts).forEach(function(k){ if(String(allPosts[k].code) === c) found = k; });
+  if(!found){ alert("Código errado"); return; }
+  db.ref("posts/" + found).remove();
+  alert("Apagado!");
+}
+function beVolunteer(){
+  var n = document.getElementById("vNome").value;
+  var nm = document.getElementById("vNum").value;
+  if(!n || !nm){ alert("Preenche nome e número"); return; }
+  db.ref("volunteers").push({name:n, number:nm}).then(function(){ alert("Pedido enviado!"); });
+}
 function renderFeed(){
-var h="";
-Object.keys(allPosts).sort(function(a,b){return allPosts[b].time-allPosts[a].time;}).forEach(function(k){
-var p=allPosts[k];
-if(p.expire&&p.expire!==0&&Date.now()>p.expire)return;
-h+='<div class="post"><div class="post-top"><div class="av">'+(p.letter||"A")+'</div><div><b>Anónimo • há '+Math.max(1,Math.floor((Date.now()-p.time)/60000))+'min</b></div></div><p style="line-height:1.6;margin:12px 0">'+p.text+'</p><div id="comments_'+k+'"></div><div class="row"><button class="btn2" onclick="react(\''+k+'\',\'hug\')">🤗 Abraço '+(p.hug||0)+'</button><button class="btn2" onclick="react(\''+k+'\',\'heart\')">🤍 '+(p.heart||0)+'</button><button class="btn2" onclick="react(\''+k+'\',\'pray\')">🙏 Orar '+(p.pray||0)+'</button><button class="btn2" onclick="toggleComment(\''+k+'\')">💬 Comentar '+(p.commentsCount||0)+'</button><button class="btn2 report" onclick="reportPost(\''+k+'\')">🚩 Denunciar</button></div><div id="commentBox_'+k+'" class="hidden" style="margin-top:8px;display:flex;gap:6px"><input id="commentIn_'+k+'" placeholder="Escreva um comentário..." style="flex:1;padding:8px"><button class="pill" onclick="sendComment(\''+k+'\')">Enviar</button></div></div>';
-});
-document.getElementById("feed").innerHTML=h||"<p style='text-align:center' class='small'>Nenhum desabafo ainda. Sê o primeiro!</p>";
-Object.keys(allPosts).forEach(function(k){loadComments(k);});
+  var h = "";
+  var keys = Object.keys(allPosts).sort(function(a,b){ return allPosts[b].time - allPosts[a].time; });
+  keys.forEach(function(k){
+    var p = allPosts[k];
+    h += '<div class="post"><b>Anónimo</b><p>' + p.text + '</p><button class="btn2" onclick="react(\'' + k + '\',\'hug\')">🤗 Abraço ' + (p.hug||0) + '</button><button class="btn2" onclick="react(\'' + k + '\',\'heart\')">🤍 ' + (p.heart||0) + '</button><button class="btn2" onclick="react(\'' + k + '\',\'pray\')">🙏 Orar ' + (p.pray||0) + '</button></div>';
+  });
+  document.getElementById("feed").innerHTML = h || "<p style='text-align:center'>Nenhum desabafo ainda.</p>";
 }
-function loadMorePosts(){db.ref("posts").orderByChild("time").limitToLast(20).once("value",function(s){allPosts=s.val()||{};renderFeed();});}
-db.ref("posts").orderByChild("time").limitToLast(20).on("value",function(s){var v=s.val()||{};Object.keys(v).forEach(function(k){allPosts[k]=v[k];});document.getElementById("cPost").innerText=Object.keys(allPosts).length;var rp=document.getElementById("rPost");if(rp)rp.innerText=Object.keys(allPosts).length;renderFeed();});
-db.ref("reports").on("value",function(s){var e=document.getElementById("rReport");if(e)e.innerText=Object.keys(s.val()||{}).length;});
-function react(id,type){db.ref("posts/"+id+"/"+type).transaction(function(v){return (v||0)+1;});}
-function aiPublish(){var verses=["Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. — Isaías 41:10","O Senhor é o meu pastor; nada me faltará. — Salmos 23:1","Tudo posso naquele que me fortalece. — Filipenses 4:13"];var v=verses[Math.floor(Math.random()*verses.length)];db.ref("posts").push({text:"✨ "+v,time:Date.now(),hug:0,pray:0,heart:0,commentsCount:0,code:9999,letter:"✝",expire:0,reported:0});db.ref("msgDia").set(v);alert("IA publicou: "+v);}
-function toggleComment(id){document.getElementById("commentBox_"+id).classList.toggle("hidden");}
-function sendComment(id){var inp=document.getElementById("commentIn_"+id);var t=inp.value.trim();if(!t)return;db.ref("comments/"+id).push({text:filterBad(t),from:myId,time:Date.now()});db.ref("posts/"+id+"/commentsCount").transaction(function(v){return (v||0)+1;});inp.value="";}
-function loadComments(id){db.ref("comments/"+id).on("value",function(s){var v=s.val()||{};var h="";Object.values(v).forEach(function(c){h+='<div style="background:var(--card2);padding:7px 10px;border-radius:12px;margin:4px 0;font-size:13px"><b>Anónimo:</b> '+c.text+'</div>';});var el=document.getElementById("comments_"+id);if(el)el.innerHTML=h;});}
-var chatId=null,chatTimer=null,seconds=3600,mediaRec=null,chunks=[],typingTimeout=null;
-function startPrivate(who){if(!confirm(who+" quer falar contigo? Abrir privada?"))return;chatId=[myId,who].sort().join("_");openChat(who);}
-function setTyping(){if(!chatId)return;db.ref("typing/"+chatId+"/"+myId).set(true);clearTimeout(typingTimeout);typingTimeout=setTimeout(function(){db.ref("typing/"+chatId+"/"+myId).remove();},2000);}
-function openChat(who){document.getElementById("privateBox").classList.remove("hidden");document.getElementById("withWho").innerText=who;seconds=3600;clearInterval(chatTimer);chatTimer=setInterval(function(){seconds--;var m=Math.floor(seconds/60),s=seconds%60;document.getElementById("timer").innerText=m+":"+(s<10?"0":"")+s;if(seconds<=0){clearInterval(chatTimer);}},1000);db.ref("chats/"+chatId).on("value",function(sn){var v=sn.val()||{};var h="";Object.values(v).forEach(function(m){h+='<div class="msg"><b>'+m.from+':</b> '+(m.text||"")+(m.audio?'<audio controls src="'+m.audio+'"></audio>':"")+'</div>';});document.getElementById("chatBox").innerHTML=h;document.getElementById("chatBox").scrollTop=99999;});db.ref("typing/"+chatId).on("value",function(sn){var t=sn.val()||{};var other=Object.keys(t).find(function(k){return k!==myId;});document.getElementById("typing").innerText=other?"✍️ "+other+" está a escrever...":"";});}
-function sendChat(){var t=document.getElementById("chatIn").value;if(!t||!chatId)return;db.ref("chats/"+chatId).push({from:myId,text:filterBad(t),time:Date.now(),expire:Date.now()+24*60*60*1000});document.getElementById("chatIn").value="";db.ref("typing/"+chatId+"/"+myId).remove();}
-function closeChat(){clearInterval(chatTimer);document.getElementById("privateBox").classList.add("hidden");chatId=null;}
-function toggleAudio(){if(mediaRec&&mediaRec.state==="recording"){mediaRec.stop();return;}navigator.mediaDevices.getUserMedia({audio:true}).then(function(st){mediaRec=new MediaRecorder(st);chunks=[];mediaRec.ondataavailable=function(e){chunks.push(e.data);};mediaRec.onstop=function(){var blob=new Blob(chunks,{type:"audio/webm"});var r=new FileReader();r.onload=function(){db.ref("chats/"+chatId).push({from:myId,audio:r.result,time:Date.now(),expire:Date.now()+24*60*60*1000});};r.readAsDataURL(blob);};mediaRec.start();alert("A gravar... clica outra vez para enviar");});}
-function beVolunteer(){var n=document.getElementById("vNome").value,nm=document.getElementById("vNum").value;if(!n||!nm){alert("Preenche nome e número");return;}db.ref("volunteers").push({name:filterBad(n),number:nm,approved:false}).then(function(){alert("Pedido enviado.");}).catch(function(e){alert("Erro: "+e.message);});}
-function loadReports(){db.ref("reports").on("value",function(s){var v=s.val()||{};var h="";Object.keys(v).forEach(function(k){var x=v[k];h+='<div style="border:1px solid #ddd;padding:8px;border-radius:10px;margin:6px 0"><b>Denúncia:</b> '+x.text+'<br><button onclick="db.ref(\'posts/'+x.postId+'\').remove();alert(\'Apagado\')">Apagar</button> <button onclick="db.ref(\'reports/'+k+'\').remove()">Ignorar</button></div>';});var e=document.getElementById("reportList");if(e)e.innerHTML=h||"Sem denúncias.";});}
-function loadVolunteers(){db.ref("volunteers").on("value",function(s){var v=s.val()||{};var h="";Object.keys(v).forEach(function(k){var x=v[k];h+='<div style="border:1px solid #ddd;padding:8px;border-radius:10px;margin:6px 0"><b>'+x.name+'</b> - '+x.number+' - '+(x.approved?"✅":"⏳")+' <button onclick="approveVol(\''+k+'\')">Aprovar</button></div>';});var e=document.getElementById("volList");if(e)e.innerHTML=h;var a="";Object.values(v).filter(function(x){return x.approved;}).forEach(function(x){a+='<p><b>'+x.name+'</b> - <a href="https://wa.me/258'+x.number+'">'+x.number+'</a></p>';});document.getElementById("approvedList").innerHTML=a||"Nenhum ainda.";});}
-function approveVol(id){db.ref("volunteers/"+id+"/approved").set(true);alert("Aprovado");}
-function doBackup(){db.ref("posts").once("value",function(s){var data={date:new Date().toISOString(),posts:s.val()};var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-falecomigo-'+new Date().toISOString().slice(0,10)+'.json';a.click();db.ref("backups").push({date:Date.now(),count:Object.keys(s.val()||{}).length});alert("Backup feito!");});}
-function loadBackups(){db.ref("backups").on("value",function(s){var v=s.val()||{};var h="";Object.values(v).reverse().forEach(function(b){h+='<p>📦 '+new Date(b.date).toLocaleDateString()+' - '+b.count+' desabafos</p>';});var e=document.getElementById("backupList");if(e)e.innerHTML=h||"Nenhum backup.";});}
-function uploadAds(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){db.ref("ads/current").set({type:f.type,data:r.result,[STRIPPED] publicada!"));};r.readAsDataURL(f);}
-function clearAds(){db.ref("ads/current").remove();document.getElementById("adsTop").innerHTML='<div style="color:#999;font-size:28px">▶ Publicidade aqui</div>';}
-db.ref("ads/current").on("value",function(s){var ad=s.val();if(!ad)return;var el=ad.type.indexOf("video")===0?'<video controls autoplay muted loop src="'+ad.data+'" onclick="adClicked()"></video>':'<img src="'+ad.data+'" onclick="adClicked()">';document.getElementById("adsTop").innerHTML=el;});
-db.ref("volunteers").on("value",function(s){var v=s.val()||{};var a="";Object.values(v).filter(function(x){return x.approved;}).forEach(function(x){a+='<p><b>'+x.name+'</b> - <a href="https://wa.me/258'+x.number+'">'+x.number+'</a></p>';});if(a)document.getElementById("approvedList").innerHTML=a;});
+db.ref("posts").on("value", function(s){
+  var v = s.val() || {};
+  allPosts = v;
+  renderFeed();
+});
 </script>
 </body>
 </html>
