@@ -47,19 +47,35 @@ textarea,input,select{width:100%;border:1px solid var(--line);background:#fff;co
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script>
 // === PWA + NOTIFICAÇÃO MESMO COM SITE FECHADO ===
 let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block'});function installPWA(){if(deferredPrompt)deferredPrompt.prompt()}
 if('serviceWorker' in navigator){
-  let sw=`self.addEventListener('push',e=>{let d={};try{d=e.data.json()}catch(err){d={title:'FALE COMIGO',body:'Alguém quer falar contigo'}};self.registration.showNotification(d.title||'FALE COMIGO',{body:d.body||'Nova mensagem',icon:'https://via.placeholder.com/192'})});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow('/'))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{let c=res.clone();caches.open('fale-v2').then(cache=>cache.put(e.request,c));return res}).catch(()=>caches.match('/'))))})`;
-  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'}))).then(()=>{if(Notification&&Notification.permission!=='granted')Notification.requestPermission()});
+  navigator.serviceWorker.register('firebase-messaging-sw.js').then(()=>{console.log('SW FCM OK')}).catch(()=>{ 
+    let sw=`self.addEventListener('push',e=>{let d={};try{d=e.data.json()}catch(err){d={title:'FALE COMIGO',body:'Alguém quer falar contigo'}};self.registration.showNotification(d.title||'FALE COMIGO',{body:d.body||'Nova mensagem',icon:'https://via.placeholder.com/192'})});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow('/'))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{let c=res.clone();caches.open('fale-v2').then(cache=>cache.put(e.request,c));return res}).catch(()=>caches.match('/'))))})`;
+    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'})));
+  });
 }
 function sendPushToAll(title,body){db.ref("pushQueue").push({title:title,body:body,time:Date.now()});if(Notification&&Notification.permission==='granted'&&document.hidden){new Notification(title,{body:body})}}
 
 function checkOffline(){document.getElementById('offlineBar').style.display=navigator.onLine?'none':'block';if(!navigator.onLine){let m=localStorage.getItem('msgDiaOffline');if(m)document.getElementById('msgDia').innerText=m;let f=localStorage.getItem('feedOffline');if(f)document.getElementById('feed').innerHTML=f}}window.addEventListener('online',checkOffline);window.addEventListener('offline',checkOffline);
 
-// === FIREBASE - SEGURANÇA: USA REGRAS NO CONSOLE, NÃO DEIXES TUDO ABERTO ===
-const firebaseConfig={apiKey:"AIzaSyB8k8VzsUb6K4E4tLul2m4iI1B1g8h8e1E",authDomain:"falecomigo-1c5a2.firebaseapp.com",databaseURL:"https://falecomigo-1c5a2-default-rtdb.firebaseio.com",projectId:"falecomigo-1c5a2",storageBucket:"falecomigo-1c5a2.appspot.com",messagingSenderId:"123456789",appId:"1:123456789:web:abc123"};firebase.initializeApp(firebaseConfig);const db=firebase.database();const BOSS_NUM="258833715054";
+// === FIREBASE NOVO - falecomigo-fe950 - JÁ LIGADO ===
+const firebaseConfig={apiKey:"AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",authDomain:"falecomigo-fe950.firebaseapp.com",databaseURL:"https://falecomigo-fe950-default-rtdb.firebaseio.com",projectId:"falecomigo-fe950",storageBucket:"falecomigo-fe950.firebasestorage.app",messagingSenderId:"69315194447",appId:"1:69315194447:web:b8ea8935dcbbaa1bb1043a",measurementId:"G-42FW190YPR"};firebase.initializeApp(firebaseConfig);const db=firebase.database();const BOSS_NUM="258833715054";
+
+// === LOGIN ANÓNIMO + FCM - NOTIFICAÇÃO COM SITE FECHADO ===
+const VAPID_KEY="BASV7LYcRHtsgQ7o5rA9-5ItfT6fW61gjZzOIUGGXjD7UhH5wH_AAE5DzhyKsfwz7fHf0CwIkz-vR9wXLUKBXPA";
+firebase.auth().signInAnonymously().catch(e=>console.log(e));
+try{
+  const messaging=firebase.messaging();
+  if(Notification&&Notification.permission!=='granted'){Notification.requestPermission().then(p=>{if(p==='granted')getFCMToken()})}
+  else if(Notification.permission==='granted'){getFCMToken()}
+  function getFCMToken(){messaging.getToken({vapidKey:VAPID_KEY}).then(t=>{if(t){console.log('FCM TOKEN:',t);let did=localStorage.getItem("deviceId")||("dev_"+Date.now());db.ref("fcmTokens/"+did).set({token:t,time:Date.now()})}}).catch(e=>console.log('FCM erro',e))}
+  messaging.onMessage((payload)=>{let n=document.getElementById('notif');n.innerText="🔔 "+(payload.notification?.title||"Nova mensagem")+" - "+(payload.notification?.body||"");n.style.display='block';setTimeout(()=>n.style.display='none',5000)});
+}catch(e){console.log(e)}
+
 let myId=localStorage.getItem("myAnon")||("Anónimo "+Math.floor(100+Math.random()*900));localStorage.setItem("myAnon",myId);let myLetter=myId.replace("Anónimo ","").charAt(0)||"A";let allPosts={};let searchTerm="";
 
 // === FILTRO FORTE PALAVRÃO + PORNOGRAFIA ===
@@ -118,7 +134,7 @@ function loadVolunteers(){db.ref("volunteers").on("value",s=>{let v=s.val()||{};
 function doBackup(){db.ref("posts").once("value",s=>{let data={date:new Date().toISOString(),posts:s.val()};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-falecomigo-'+new Date().toISOString().slice(0,10)+'.json';a.click();db.ref("backups").push({date:Date.now(),count:Object.keys(s.val()||{}).length});alert("Backup feito!")})}function loadBackups(){db.ref("backups").on("value",s=>{let v=s.val()||{};let h="";Object.values(v).reverse().forEach(b=>{h+=`<p>📦 ${new Date(b.date).toLocaleDateString()} - ${b.count} desabafos</p>`});document.getElementById("backupList").innerHTML=h||"Nenhum backup."})}setInterval(()=>{let last=localStorage.getItem('lastBackup');if(!last||Date.now()-parseInt(last)>7*24*60*60*1000){doBackup();localStorage.setItem('lastBackup',Date.now())}},3600000);
 
 // === PUBLICIDADE PARA TODO MUNDO - FICA NO FIREBASE, NÃO SÓ NO TEU TELEMÓVEL ===
-function uploadAds(e){let f=e.target.files[0];if(!f)return;if(!checkFileName(f.name))return alert("Nome bloqueado");let r=new FileReader();r.onload=()=>{db.ref("ads/current").set({type:f.type,data:r.result,time:Date.now()});alert("Publicidade publicada para TODO MUNDO!")};r.readAsDataURL(f)}
+function uploadAds(e){let f=e.target.files[0];if(!f)return;if(!checkFileName(f.name))return alert("Nome bloqueado");let r=new FileReader();r.onload=()=>{db.ref("ads/current").set({type:f.type,data:r.result,[STRIPPED] publicada para TODO MUNDO!")};r.readAsDataURL(f)}
 function clearAds(){db.ref("ads/current").remove()}
 db.ref("ads/current").on("value",s=>{let ad=s.val();if(!ad)return;let el=ad.type.startsWith("video")?`<video controls autoplay muted loop src="${ad.data}" onclick="adClicked()"></video>`:`<img src="${ad.data}" onclick="adClicked()">`;document.getElementById("adsTop").innerHTML=el;document.getElementById("adsMid").innerHTML=el});
 db.ref("volunteers").on("value",s=>{let v=s.val()||{};let a="";Object.values(v).filter(x=>x.approved).forEach(x=>{a+=`<p><b>${x.name}</b> - <a href="https://wa.me/258${x.number}">${x.number}</a></p>`});if(a)document.getElementById("approvedList").innerHTML=a});
