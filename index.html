@@ -8,8 +8,10 @@ body{margin:0;background:#1A2B4A;color:#fff;font-family:Arial;padding-bottom:110
 body.light{background:#F5F0E6;color:#111} body.light .card,body.light .post{background:#fff;color:#111} body.light .btn2{background:#fff;color:#111}
 .top{display:flex;justify-content:space-between;padding:14px}.pill{border:1px solid #E8C268;background:#2A3F6B;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
 .hero{padding:10px 20px;text-align:center}.logoBig{font-size:52px;font-weight:900;line-height:1}.logoBig span{color:#E8C268}.hero h2{color:#E8C268;font-size:30px;margin:5px 0;cursor:pointer}
-.ads{margin:12px;background:#000;border-radius:20px;display:block;overflow:hidden;padding:0}.ads img{width:100%;height:auto;object-fit:contain;display:block}unddius3A6px;padding:16px}
-textarea,input{width:100%;padding:12px;border-radius:12px;border:0;font-size:15px;box-sizing:border-box}
+.ads{margin:12px;background:#000;border-radius:20px;min-height:340px;display:block;overflow:hidden;padding:0}.ads img{width:100%;height:340px;object-fit:contain;display:block;background:#000}
+.card{margin:12px;background:#263A66;border-radius:20px;padding:16px}
+textarea,input{width:100%;padding:14px;border-radius:12px;border:0;font-size:16px;box-sizing:border-box;display:block}
+#txt,#supTxt{min-height:140px !important;height:140px !important;width:100% !important;font-size:16px;line-height:1.5}
 .btn{width:100%;background:#E8C268;color:#1A2B4A;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
 .post{background:#263A66;border-radius:20px;padding:16px;margin:12px}.btn2{background:#2A3F6B;color:#FFE9A8;border:1px solid #E8C268;padding:6px 10px;border-radius:999px;margin:3px;cursor:pointer}.btn2.report{border-color:#FF6B6B;color:#FF9A9A}
 .hidden{display:none!important}.bottom{position:fixed;left:12px;right:12px;bottom:12px;background:#24365F;display:flex;justify-content:space-around;padding:12px;border-radius:25px}.bottom button{background:none;border:0;color:#fff;cursor:pointer}
@@ -27,8 +29,8 @@ textarea,input{width:100%;padding:12px;border-radius:12px;border:0;font-size:15p
 <div class="hero"><div class="logoBig">FALE<br><span>COMIGO</span></div><h2 onclick="secretClick()">DEUS É CONTIGO ✨</h2><p id="verseOfDay">A carregar versículo...</p><p>Anónimo • Sem julgamentos</p><p style="color:#E8C268;font-weight:800;margin-top:2px">📞 Precisas falar? 833715054 / 874193775</p></div>
 <div class="ads" id="adsTop" onclick="adClicked()"><div style="color:#999;font-size:22px;text-align:center">▶ Publicidade aqui</div></div>
 <div class="card"><div style="display:flex;gap:8px"><button class="pill" style="flex:1" onclick="showTab('des')">💬 Desabafos</button><button class="pill" style="flex:1" onclick="showTab('sup')">🏆 Superação</button><button class="pill" style="flex:1" onclick="showTab('fav')">⭐ Guardados</button></div>
-<div id="tabDesArea"><h3>Desabafa aqui</h3><p style="font-size:13px;color:#FFE9A8">Não precisas saber o nome do que sentes. Só escreve o que está no teu coração.</p><textarea id="txt" rows="3" placeholder="Escreva aqui o que sentes..." style="margin-top:8px"></textarea><button class="btn" onclick="sendPost()">Enviar Desabafo</button></div>
-<div id="tabSupArea" class="hidden"><h3>🏆 Conta a tua Superação</h3><p style="font-size:13px">Sem foto. Anónimo.</p><textarea id="supTxt" rows="3" placeholder="Eu estava assim... e superei assim..." style="margin-top:8px"></textarea><button class="btn" onclick="sendSup()">Publicar Superação</button><p style="font-size:12px;color:#FFD700">⚠️ Não partilhes prints.</p></div>
+<div id="tabDesArea"><h3>Desabafa aqui</h3><p style="font-size:13px;color:#FFE9A8">Não precisas saber o nome do que sentes. Só escreve o que está no teu coração.</p><textarea id="txt" rows="6" placeholder="Escreva aqui o que sentes..." style="margin-top:8px"></textarea><button class="btn" onclick="sendPost()">Enviar Desabafo</button></div>
+<div id="tabSupArea" class="hidden"><h3>🏆 Conta a tua Superação</h3><p style="font-size:13px">Sem foto. Anónimo.</p><textarea id="supTxt" rows="6" placeholder="Eu estava assim... e superei assim..." style="margin-top:8px"></textarea><button class="btn" onclick="sendSup()">Publicar Superação</button><p style="font-size:12px;color:#FFD700">⚠️ Não partilhes prints.</p></div>
 <div id="tabFavArea" class="hidden"><h3>⭐ Os teus Guardados</h3><div id="favList"></div></div></div>
 <div id="feed"></div><button id="btnMoreDes" class="moreBtn hidden" onclick="verMaisDes()">Ver mais ⬇️</button>
 <div id="supFeed" class="hidden"></div><button id="btnMoreSup" class="moreBtn hidden" onclick="verMaisSup()">Ver mais ⬇️</button>
