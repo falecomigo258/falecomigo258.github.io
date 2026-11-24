@@ -7,8 +7,8 @@
 body{margin:0;background:#1A2B4A;color:#fff;font-family:Arial;padding-bottom:110px}
 body.light{background:#F5F0E6;color:#111} body.light .card,body.light .post{background:#fff;color:#111} body.light .btn2{background:#fff;color:#111}
 .top{display:flex;justify-content:space-between;padding:8px 14px}.pill{border:1px solid #E8C268;background:#2A3F6B;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-.hero{padding:2px 20px 4px;text-align:center}.logoBig{font-size:44px;font-weight:900;line-height:.95}.logoBig span{color:#E8C268}.hero h2{color:#E8C268;font-size:26px;margin:2px 0;cursor:pointer}.hero p{margin:4px 0}
-.ads{margin:8px 12px;background:#000;border-radius:18px;display:block;overflow:hidden;padding:0;height:230px;border:none}.ads img{width:100% !important;height:230px !important;object-fit:cover !important;display:block}
+.hero{padding:6px 20px 10px;text-align:center}.logoBig{font-size:44px;font-weight:900;line-height:.95}.logoBig span{color:#E8C268}.hero h2{color:#E8C268;font-size:26px;margin:4px 0;cursor:pointer}.hero p{margin:6px 0;line-height:1.5;word-wrap:break-word}
+.ads{margin:10px 12px;background:#000;border-radius:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;min-height:230px;height:auto;border:none}.ads img{width:100% !important;height:auto !important;max-height:230px !important;object-fit:contain !important;display:block}
 .card{margin:12px;background:#263A66;border-radius:20px;padding:16px;box-sizing:border-box}
 textarea,input{width:100% !important;padding:14px;border-radius:12px;border:0;font-size:16px;box-sizing:border-box;display:block}
 #txt,#supTxt{width:100% !important;min-width:100% !important;max-width:100% !important;min-height:180px !important;height:180px !important;font-size:16px;line-height:1.5}
@@ -142,7 +142,7 @@ var adIdx=0; var adTimer=null;
 function uploadAds(e){ var files=Array.from(e.target.files).slice(0,11); if(files.length===0) return; var promises=files.map(function(f){ return new Promise(function(res){ var r=new FileReader(); r.onload=function(){ res(r.result); }; r.readAsDataURL(f); }); }); Promise.all(promises).then(function(results){ db.ref("ads/list").set(results).then(function(){ alert("Publicidade publicada! "+results.length+" fotos a rodar."); }); }); }
 function clearAds(){ db.ref("ads/list").remove(); document.getElementById("adsTop").innerHTML='<div style="color:#999;line-height:230px">▶ Publicidade aqui</div>'; }
 db.ref("ads/list").on("value",function(s){ var v=s.val()||[]; if(Array.isArray(v)) allAds=v.filter(Boolean); else allAds=Object.values(v); if(allAds.length===0) return; clearInterval(adTimer); adIdx=0; showAd(); adTimer=setInterval(function(){ adIdx=(adIdx+1)%allAds.length; showAd(); },10000); });
-function showAd(){ if(allAds.length===0) return; document.getElementById("adsTop").innerHTML='<img src="'+allAds[adIdx]+'" style="width:100%;height:230px;object-fit:cover;display:block">'; }
+function showAd(){ if(allAds.length===0) return; document.getElementById("adsTop").innerHTML='<img src="'+allAds[adIdx]+'" style="width:100%;height:auto;max-height:230px;object-fit:contain;display:block">'; }
 db.ref("volunteers").on("value",function(s){ var v=s.val()||{}; var a=""; Object.values(v).filter(function(x){ return x.approved; }).forEach(function(x){ a+='<p><b>'+x.name+'</b> - '+x.number+'</p>'; }); if(a) document.getElementById("approvedList").innerHTML=a; });
 </script>
 </body>
