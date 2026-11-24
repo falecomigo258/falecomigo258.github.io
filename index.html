@@ -4,120 +4,115 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FALE COMIGO</title>
 <style>
-body{margin:0;background:#1A2B4A;color:#fff;font-family:Arial;padding-bottom:100px}
-.top{display:flex;justify-content:space-between;padding:14px}
-.pill{border:1px solid #E8C268;background:#2A3F6B;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-.hero{padding:10px 20px}.hero h1{margin:0;font-size:42px}.hero h2{color:#E8C268;font-size:32px;margin:5px 0;cursor:pointer}
+body{margin:0;background:#1A2B4A;color:#fff;font-family:Arial;padding-bottom:110px}
+body.light{background:#F5F0E6;color:#111} body.light .card,body.light .post{background:#fff;color:#111} body.light .btn2{background:#fff;color:#111}
+.top{display:flex;justify-content:space-between;padding:14px}.pill{border:1px solid #E8C268;background:#2A3F6B;color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.hero{padding:10px 20px;text-align:center}.hero h1{margin:0;font-size:46px}.hero h2{color:#E8C268;font-size:30px;margin:5px 0;cursor:pointer}
+.logoBig{font-size:52px;font-weight:900;line-height:1}.logoBig span{color:#E8C268}
+.ads{margin:12px;background:#fff;border-radius:20px;min-height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer}.ads img{width:100%;height:280px;object-fit:cover}
 .card{margin:12px;background:#263A66;border-radius:20px;padding:16px}
 textarea,input,select{width:100%;padding:12px;border-radius:12px;border:0;font-size:15px;box-sizing:border-box}
 .btn{width:100%;background:#E8C268;color:#1A2B4A;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
-.post{background:#263A66;border-radius:20px;padding:16px;margin:12px}.btn2{background:#2A3F6B;color:#FFE9A8;border:1px solid #E8C268;padding:6px 10px;border-radius:999px;margin:3px;cursor:pointer}
+.post{background:#263A66;border-radius:20px;padding:16px;margin:12px}.btn2{background:#2A3F6B;color:#FFE9A8;border:1px solid #E8C268;padding:6px 10px;border-radius:999px;margin:3px;cursor:pointer}.btn2.report{border-color:#FF6B6B;color:#FF9A9A}.btn2.active{background:#E8C268;color:#1A2B4A}
 .hidden{display:none!important}.bottom{position:fixed;left:12px;right:12px;bottom:12px;background:#24365F;display:flex;justify-content:space-around;padding:12px;border-radius:25px}.bottom button{background:none;border:0;color:#fff;cursor:pointer}
-#secretModal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}#secretModal .box{background:#fff;color:#111;border-radius:20px;padding:20px;width:100%;max-width:320px;text-align:center}
+#secretModal,#welcomeModal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}#secretModal .box,#welcomeModal .box{background:#fff;color:#111;border-radius:20px;padding:20px;width:100%;max-width:340px;text-align:center}
+#chatBox{height:200px;overflow:auto;background:#1A2B4A;padding:10px;border-radius:12px}.msg{background:#2A3F6B;padding:8px;border-radius:10px;margin:5px 0}.timer{color:#FF6B6B;font-weight:700}
+.filterRow{display:flex;flex-wrap:wrap;gap:6px}
 </style>
 </head>
 <body>
-<div class="top"><button class="pill" id="langBtn" onclick="trocaIdioma()">PT 🇵🇹</button><button class="pill" onclick="alert('Tema mudado')">☀️ 🌙</button></div>
-<div class="hero"><h1 id="t1">FALE COMIGO</h1><h2 id="t2" onclick="secretClick()">DEUS É CONTIGO ✨</h2><p id="t3">Anónimo • Sem julgamentos</p></div>
-<div class="card"><h3 id="t4">Desabafa aqui</h3><textarea id="txt" rows="3" placeholder="Escreva aqui..."></textarea><button class="btn" id="t5" onclick="sendPost()">Enviar Desabafo</button><p style="font-size:12px;color:#A9B8D4">Recebes um código para apagar depois.</p></div>
+<div class="top"><button class="pill" id="langBtn" onclick="trocaIdioma()">PT 🇵🇹</button><button class="pill" onclick="trocaTema()">☀️ 🌙</button></div>
+<div class="hero"><div class="logoBig">FALE<br><span>COMIGO</span></div><h2 onclick="secretClick()">DEUS É CONTIGO ✨</h2><p id="verseOfDay">A carregar versículo...</p><p>Anónimo • Sem julgamentos</p></div>
+<div class="ads" id="adsTop" onclick="adClicked()"><div style="color:#999;font-size:22px;text-align:center">▶ Publicidade aqui<br><small>Carrega no Painel do Boss</small></div></div>
+<div style="text-align:center;color:#E8C268;font-size:12px"><span id="adCounter">Anúncio 1 de 1</span> • Muda a cada 10 segundos</div>
+<div class="card"><div style="display:flex;gap:8px"><button class="pill" style="flex:1" id="tabDes" onclick="showTab('des')">💬 Desabafos</button><button class="pill" style="flex:1" id="tabSup" onclick="showTab('sup')">🏆 Superação</button><button class="pill" style="flex:1" onclick="showTab('fav')">⭐ Guardados</button></div>
+<div id="tabDesArea"><h3>Desabafa aqui</h3><select id="cat"><option value="Fé">🙏 Fé</option><option value="Depressão">😔 Depressão</option><option value="Ansiedade">😰 Ansiedade</option><option value="Dívidas">💰 Dívidas</option><option value="Família">👨‍👩‍👧 Família</option></select><textarea id="txt" rows="3" placeholder="Escreva aqui..." style="margin-top:8px"></textarea><button class="btn" onclick="sendPost()">Enviar Desabafo</button>
+<div style="margin-top:12px"><b>Filtrar por problema:</b><div class="filterRow" style="margin-top:6px"><button class="btn2 active" onclick="setFilter('Todos',this)">Todos</button><button class="btn2" onclick="setFilter('Depressão',this)">Depressão</button><button class="btn2" onclick="setFilter('Ansiedade',this)">Ansiedade</button><button class="btn2" onclick="setFilter('Dívidas',this)">Dívidas</button><button class="btn2" onclick="setFilter('Família',this)">Família</button><button class="btn2" onclick="setFilter('Fé',this)">Fé</button></div></div></div>
+<div id="tabSupArea" class="hidden"><h3>🏆 Conta a tua Superação</h3><p style="font-size:13px">Conta qual problema tinhas e como superaste. Sem foto. Anónimo.</p><select id="supCat"><option>Depressão</option><option>Ansiedade</option><option>Dívidas</option><option>Vício</option><option>Traição</option><option>Desemprego</option><option>Luto</option></select><textarea id="supTxt" rows="3" placeholder="Eu tinha... e superei assim..." style="margin-top:8px"></textarea><button class="btn" onclick="sendSup()">Publicar Superação</button><p style="font-size:12px;color:#FFD700">⚠️ Não partilhes prints. Isto é anónimo e pessoal.</p></div>
+<div id="tabFavArea" class="hidden"><h3>⭐ Os teus Guardados</h3><div id="favList"></div></div></div>
 <div id="feed"></div>
+<div id="supFeed"></div>
+<div class="card"><h3>Quem está online</h3><div id="onlineList">A carregar...</div></div>
+<div class="card" id="privateBox"><h3>Conversa privada - <span id="withWho">Escolhe alguém online</span> <span class="timer" id="timer">60:00</span></h3><div id="typing" style="color:#E8C268;font-size:12px;min-height:16px"></div><div id="chatBox"></div><div style="display:flex;gap:8px;margin-top:8px"><input id="chatIn" placeholder="Escreva..." oninput="setTyping()"><button class="pill" onclick="sendChat()">➤</button></div><button class="pill" style="margin-top:10px;width:100%;background:#4CAF50" onclick="thankYou()">❤️ Obrigado, ajudaste-me</button><button class="pill" style="margin-top:8px;width:100%" onclick="closeChat()">Fechar</button></div>
 <div class="card"><h3>Ser Voluntário</h3><input id="vNome" placeholder="Nome"><input id="vNum" placeholder="WhatsApp" style="margin-top:8px"><button class="btn" onclick="beVolunteer()">Quero Ajudar ❤️</button></div>
+<div class="card"><h3>Voluntários Aprovados</h3><div id="approvedList">Nenhum ainda.</div></div>
 <div class="card"><h3>Apagar meu desabafo</h3><input id="delCode" placeholder="Código"><button class="btn" onclick="deleteMyPost()">Apagar com Código</button></div>
-<div id="adminArea" class="hidden"><div class="card"><div style="background:#fff;color:#111;border-radius:16px;padding:14px"><b>PAINEL BOSS</b><p>Visitas: <span id="rVisit">0</span> | Desabafos: <span id="rPost">0</span></p><button class="btn" onclick="closeAdmin()">Fechar</button></div></div></div>
-<div class="bottom"><button onclick="window.scrollTo(0,0)">🏠 Home</button><button onclick="alert('Conversa')">💬 Conversa</button></div>
+<div id="adminArea" class="hidden"><div class="card"><div style="background:#fff;color:#111;border-radius:16px;padding:14px"><b>PAINEL BOSS - SÓ PARA TI 🔒</b><p>Visitas: <span id="rVisit">0</span> | Pessoas que desabafaram: <b id="rUnique">0</b><br>Denúncias: <span id="rReport">0</span> | Cliques anúncio: <span id="rAd">0</span></p><div style="background:#FFF3CD;padding:10px;border-radius:10px"><b>📊 RELATÓRIO DE DOMINGO</b><p id="sundayReport">A calcular...</p></div><label><b>Publicidade - Máximo 11 fotos - Roda de 10 em 10 segundos</b></label><input type="file" accept="image/*" multiple onchange="uploadAds(event)"><p style="font-size:12px">Escolhe até 11 fotos de uma vez. Fotos pequenas, menos de 1MB.</p><div id="adsListAdmin"></div><button class="btn" onclick="clearAds()">Apagar Todas Publicidades</button><button class="btn" onclick="doBackup()">💾 Backup Agora</button><div id="backupList"></div><h4>🚫 Pessoas Banidas</h4><div id="banList"></div><h4>🚩 Denúncias</h4><div id="reportList"></div><h4>Voluntários</h4><div id="volList"></div><button class="btn" style="background:#ddd" onclick="closeAdmin()">Fechar Painel</button></div></div></div>
+<div class="bottom"><button onclick="window.scrollTo(0,0)">🏠 Home</button><button onclick="irConversar()">💬 Conversa</button></div>
 <div id="secretModal"><div class="box"><h2>🙏 Amém</h2><input id="secretInput" type="password" placeholder="Código"><button class="btn" onclick="checkSecret()">Entrar</button><button class="pill" style="color:#111;margin-top:10px" onclick="closeSecret()">Cancelar</button></div></div>
+<div id="welcomeModal"><div class="box"><h2>FALE COMIGO</h2><p>🤫 Aqui é anónimo.<br>Respeita todos.<br>❌ Não faças prints.<br>❌ Não insultes.</p><button class="btn" onclick="closeWelcome()">Entendi, Entrar</button></div></div>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script>
-var langPT = true;
-function trocaIdioma(){
-  langPT = !langPT;
-  if(langPT){
-    document.getElementById("langBtn").innerText = "PT 🇵🇹";
-    document.getElementById("t1").innerText = "FALE COMIGO";
-    document.getElementById("t2").innerText = "DEUS É CONTIGO ✨";
-    document.getElementById("t3").innerText = "Anónimo • Sem julgamentos";
-    document.getElementById("t4").innerText = "Desabafa aqui";
-    document.getElementById("t5").innerText = "Enviar Desabafo";
-  } else {
-    document.getElementById("langBtn").innerText = "EN 🇬🇧";
-    document.getElementById("t1").innerText = "TALK TO ME";
-    document.getElementById("t2").innerText = "GOD IS WITH YOU ✨";
-    document.getElementById("t3").innerText = "Anonymous • No judgment";
-    document.getElementById("t4").innerText = "Share here";
-    document.getElementById("t5").innerText = "Send";
-  }
-  alert("Idioma trocado!");
-}
-var _clicks = 0;
-function secretClick(){
-  _clicks++;
-  if(_clicks >= 6){ _clicks = 0; document.getElementById("secretModal").style.display = "flex"; }
-}
-function closeSecret(){ document.getElementById("secretModal").style.display = "none"; }
-function checkSecret(){
-  var v = document.getElementById("secretInput").value;
-  if(v === "9o90973gwi53"){
-    closeSecret();
-    document.getElementById("adminArea").classList.remove("hidden");
-    alert("Bem-vindo Boss!");
-  } else { alert("Código errado"); }
-}
+var langPT=true;
+function trocaIdioma(){ langPT=!langPT; document.getElementById("langBtn").innerText=langPT?"PT 🇵🇹":"EN 🇬🇧"; }
+function trocaTema(){ document.body.classList.toggle("light"); }
+var hourNow=new Date().getHours(); if(hourNow>=19||hourNow<6){ document.body.classList.remove("light"); } else { document.body.classList.add("light"); }
+var verses=["Salmos 23:4 - Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo.","Provérbios 3:5 - Confia no Senhor de todo o teu coração.","Isaías 41:10 - Não temas, porque eu sou contigo.","Mateus 11:28 - Vinde a mim todos os que estais cansados.","Filipenses 4:13 - Tudo posso naquele que me fortalece.","Romanos 8:28 - Todas as coisas cooperam para o bem.","João 3:16 - Porque Deus amou o mundo de tal maneira."];
+var dayIdx=new Date().getDay(); document.getElementById("verseOfDay").innerText="📖 "+verses[dayIdx];
+if(!localStorage.getItem("welcomed")){ document.getElementById("welcomeModal").style.display="flex"; }
+function closeWelcome(){ document.getElementById("welcomeModal").style.display="none"; localStorage.setItem("welcomed","1"); }
+var _clicks=0; function secretClick(){ _clicks++; if(_clicks>=6){ _clicks=0; document.getElementById("secretModal").style.display="flex"; } }
+function closeSecret(){ document.getElementById("secretModal").style.display="none"; }
+function checkSecret(){ var v=document.getElementById("secretInput").value; if(v==="9o90973gwi53"){ closeSecret(); document.getElementById("adminArea").classList.remove("hidden"); loadVolunteers(); loadReports(); loadBans(); } else alert("Código errado"); }
 function closeAdmin(){ document.getElementById("adminArea").classList.add("hidden"); }
-var firebaseConfig = {apiKey:"AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",authDomain:"falecomigo-fe950.firebaseapp.com",databaseURL:"https://falecomigo-fe950-default-rtdb.firebaseio.com",projectId:"falecomigo-fe950",storageBucket:"falecomigo-fe950.firebasestorage.app",messagingSenderId:"69315194447",appId:"1:69315194447:web:b8ea8935dcbbaa1bb1043a"};
-firebase.initializeApp(firebaseConfig);
-var db = firebase.database();
+function irConversar(){ document.getElementById("privateBox").scrollIntoView(); }
+var firebaseConfig={apiKey:"AIzaSyDAuMMta5I-NsqoEgJm-tbtuljlY85Lnjg",authDomain:"falecomigo-fe950.firebaseapp.com",databaseURL:"https://falecomigo-fe950-default-rtdb.firebaseio.com",projectId:"falecomigo-fe950",storageBucket:"falecomigo-fe950.firebasestorage.app",messagingSenderId:"69315194447",appId:"1:69315194447:web:b8ea8935dcbbaa1bb1043a"};
+firebase.initializeApp(firebaseConfig); var db=firebase.database();
 try{ firebase.auth().signInAnonymously(); }catch(e){}
-var myId = localStorage.getItem("myAnon") || ("Anónimo " + Math.floor(100+Math.random()*900));
-localStorage.setItem("myAnon", myId);
-var allPosts = {};
-var lastPostTime = 0;
-function sendPost(){
-  alert("Botão clicado! A tentar publicar...");
-  var now = Date.now();
-  if(now - lastPostTime < 60000){ alert("Espera 1 minuto"); return; }
-  var t = document.getElementById("txt").value.trim();
-  if(!t){ alert("Escreve alguma coisa primeiro"); return; }
-  var code = Math.floor(1000+Math.random()*9000);
-  db.ref("posts").push({text:t, time:Date.now(), hug:0, heart:0, pray:0, code:code, letter:"A"}).then(function(){
-    document.getElementById("txt").value = "";
-    alert("Publicado! Código: " + code);
-  }).catch(function(e){ alert("Erro Firebase: " + e.message); });
-  lastPostTime = now;
-}
-function react(id, type){
-  alert("Reação: " + type);
-  db.ref("posts/" + id + "/" + type).transaction(function(v){ return (v||0)+1; });
-}
-function deleteMyPost(){
-  var c = document.getElementById("delCode").value.trim();
-  var found = null;
-  Object.keys(allPosts).forEach(function(k){ if(String(allPosts[k].code) === c) found = k; });
-  if(!found){ alert("Código errado"); return; }
-  db.ref("posts/" + found).remove();
-  alert("Apagado!");
-}
-function beVolunteer(){
-  var n = document.getElementById("vNome").value;
-  var nm = document.getElementById("vNum").value;
-  if(!n || !nm){ alert("Preenche nome e número"); return; }
-  db.ref("volunteers").push({name:n, number:nm}).then(function(){ alert("Pedido enviado!"); });
-}
-function renderFeed(){
-  var h = "";
-  var keys = Object.keys(allPosts).sort(function(a,b){ return allPosts[b].time - allPosts[a].time; });
-  keys.forEach(function(k){
-    var p = allPosts[k];
-    h += '<div class="post"><b>Anónimo</b><p>' + p.text + '</p><button class="btn2" onclick="react(\'' + k + '\',\'hug\')">🤗 Abraço ' + (p.hug||0) + '</button><button class="btn2" onclick="react(\'' + k + '\',\'heart\')">🤍 ' + (p.heart||0) + '</button><button class="btn2" onclick="react(\'' + k + '\',\'pray\')">🙏 Orar ' + (p.pray||0) + '</button></div>';
-  });
-  document.getElementById("feed").innerHTML = h || "<p style='text-align:center'>Nenhum desabafo ainda.</p>";
-}
-db.ref("posts").on("value", function(s){
-  var v = s.val() || {};
-  allPosts = v;
-  renderFeed();
-});
+var myId=localStorage.getItem("myAnon")||("Anónimo "+Math.floor(100+Math.random()*900)); localStorage.setItem("myAnon",myId);
+var allPosts={}; var allSup={}; var allAds=[]; var currentFilter="Todos"; var currentTab="des"; var lastPostTime=0; var favs=JSON.parse(localStorage.getItem("favs")||"[]");
+function showTab(t){ currentTab=t; document.getElementById("tabDesArea").classList.toggle("hidden",t!=="des"); document.getElementById("tabSupArea").classList.toggle("hidden",t!=="sup"); document.getElementById("tabFavArea").classList.toggle("hidden",t!=="fav"); document.getElementById("feed").classList.toggle("hidden",t!=="des"); document.getElementById("supFeed").classList.toggle("hidden",t!=="sup"); if(t==="fav") renderFavs(); if(t==="des") renderFeed(); if(t==="sup") renderSup(); }
+function setFilter(f,el){ currentFilter=f; document.querySelectorAll(".filterRow .btn2").forEach(function(b){ b.classList.remove("active"); }); if(el) el.classList.add("active"); renderFeed(); }
+try{ db.ref("online/"+myId).set(true); db.ref("online/"+myId).onDisconnect().remove(); }catch(e){}
+db.ref("online").on("value",function(s){ var o=s.val()||{}; var h=""; Object.keys(o).forEach(function(u){ if(u!==myId) h+='<button class="pill" style="margin:4px" onclick="startPrivate(\''+u+'\')">🟢 '+u+'</button>'; }); document.getElementById("onlineList").innerHTML=h||"Só tu online"; });
+db.ref("statsReal/totalVisits").on("value",function(s){ var e=document.getElementById("rVisit"); if(e) e.innerText=s.val()||0; });
+db.ref("statsReal/adClicks").on("value",function(s){ var e=document.getElementById("rAd"); if(e) e.innerText=s.val()||0; });
+function adClicked(){ try{ db.ref("statsReal/adClicks").transaction(function(v){ return (v||0)+1; }); }catch(e){} }
+db.ref("bans").on("value",function(s){ var bans=s.val()||{}; if(bans[myId]){ document.body.innerHTML="<h1 style='text-align:center;padding:40px'>Estás banido. Volta em 24h. 🙏</h1>"; } });
+function sendPost(){ var now=Date.now(); if(now-lastPostTime<60000){ alert("Espera 1 minuto"); return; } var t=document.getElementById("txt").value.trim(); if(!t){ alert("Escreve primeiro"); return; } var code=Math.floor(1000+Math.random()*9000); var cat=document.getElementById("cat").value; db.ref("posts").push({text:t, cat:cat, time:Date.now(), hug:0, heart:0, pray:0, commentsCount:0, views:0, code:code, closed:false}).then(function(){ document.getElementById("txt").value=""; alert("Publicado! Código: "+code); }).catch(function(e){ alert("Erro: "+e.message); }); lastPostTime=now; }
+function sendSup(){ var t=document.getElementById("supTxt").value.trim(); if(!t) return; db.ref("sups").push({text:t, cat:document.getElementById("supCat").value, time:Date.now(), inspired:0, also:0, code:Math.floor(1000+Math.random()*9000)}).then(function(){ document.getElementById("supTxt").value=""; alert("Superação publicada! Obrigado por inspirar."); }); }
+function deleteMyPost(){ var c=document.getElementById("delCode").value.trim(); var found=null; Object.keys(allPosts).forEach(function(k){ if(String(allPosts[k].code)===c) found=k; }); if(!found){ alert("Código errado"); return; } db.ref("posts/"+found).remove(); alert("Apagado!"); }
+function react(id,type){ db.ref("posts/"+id+"/"+type).transaction(function(v){ return (v||0)+1; }); }
+function reportPost(id){ if(!confirm("Denunciar?")) return; db.ref("posts/"+id+"/reported").transaction(function(v){ return (v||0)+1; }); db.ref("reports").push({postId:id, text:allPosts[id]?allPosts[id].text:"", time:Date.now(), by:myId}); alert("Denunciado."); }
+function toggleComment(id){ document.getElementById("commentBox_"+id).classList.toggle("hidden"); }
+function sendComment(id){ var inp=document.getElementById("commentIn_"+id); var t=inp.value.trim(); if(!t) return; db.ref("comments/"+id).push({text:t, from:myId, time:Date.now()}); db.ref("posts/"+id+"/commentsCount").transaction(function(v){ return (v||0)+1; }); inp.value=""; checkReply(id); }
+function checkReply(id){ if(allPosts[id] && String(allPosts[id].code)===localStorage.getItem("lastMyCode")){ alert("Alguém respondeu ao teu desabafo!"); } }
+function toggleFav(id){ if(favs.includes(id)){ favs=favs.filter(function(x){ return x!==id; }); } else { favs.push(id); alert("⭐ Guardado!"); } localStorage.setItem("favs",JSON.stringify(favs)); renderFeed(); renderFavs(); }
+function renderFavs(){ var h=""; favs.forEach(function(id){ var p=allPosts[id]; if(p) h+='<div class="post"><b>'+p.cat+'</b><p>'+p.text+'</p><button class="btn2" onclick="toggleFav(\''+id+'\')">Remover ⭐</button></div>'; }); document.getElementById("favList").innerHTML=h||"Nenhum guardado ainda."; }
+function closeComments(id){ if(!confirm("Fechar comentários? Ninguém mais comenta.")) return; db.ref("posts/"+id+"/closed").set(true); }
+function markView(id){ try{ db.ref("posts/"+id+"/views").transaction(function(v){ return (v||0)+1; }); }catch(e){} }
+function loadComments(id){ db.ref("comments/"+id).on("value",function(s){ var v=s.val()||{}; var h=""; Object.values(v).forEach(function(c){ h+='<div style="background:#2A3F6B;padding:7px;border-radius:10px;margin:4px 0;font-size:13px"><b>Anónimo:</b> '+c.text+'</div>'; }); var el=document.getElementById("comments_"+id); if(el) el.innerHTML=h; }); }
+function renderFeed(){ var h=""; var keys=Object.keys(allPosts).sort(function(a,b){ return allPosts[b].time-allPosts[a].time; }); keys.forEach(function(k){ var p=allPosts[k]; if(currentFilter!=="Todos" && p.cat!==currentFilter) return; var isFav=favs.includes(k)?"⭐":"☆"; h+='<div class="post"><b>'+(p.cat||"Fé")+'</b> • <span>👁️ '+(p.views||0)+' viram</span><p>'+p.text+'</p><div id="comments_'+k+'"></div><button class="btn2" onclick="react(\''+k+'\',\'hug\')">🤗 '+(p.hug||0)+'</button><button class="btn2" onclick="react(\''+k+'\',\'heart\')">🤍 '+(p.heart||0)+'</button><button class="btn2" onclick="react(\''+k+'\',\'pray\')">🙏 '+(p.pray||0)+'</button><button class="btn2" onclick="toggleComment(\''+k+'\')">💬 '+(p.commentsCount||0)+'</button><button class="btn2" onclick="toggleFav(\''+k+'\')">'+isFav+' Guardar</button><button class="btn2 report" onclick="reportPost(\''+k+'\')">🚩 Denunciar</button>'+(p.closed?"<p>🔒 Comentários fechados</p>":'<div id="commentBox_'+k+'" class="hidden" style="margin-top:8px;display:flex;gap:6px"><input id="commentIn_'+k+'" placeholder="Escreva..."><button class="pill" onclick="sendComment(\''+k+'\')">Enviar</button></div><button class="btn2" onclick="closeComments(\''+k+'\')">🔒 Fechar comentários</button>')+'</div>'; }); document.getElementById("feed").innerHTML=h||"<p style='text-align:center'>Nenhum desabafo ainda.</p>"; keys.forEach(function(k){ loadComments(k); if(allPosts[k]) markView(k); }); }
+function renderSup(){ var h=""; var keys=Object.keys(allSup).sort(function(a,b){ return allSup[b].time-allSup[a].time; }); keys.forEach(function(k){ var p=allSup[k]; h+='<div class="post"><b>🏆 Superação - '+p.cat+'</b><p>'+p.text+'</p><button class="btn2" onclick="supReact(\''+k+'\',\'inspired\')">❤️ Isto inspirou-me '+(p.inspired||0)+'</button><button class="btn2" onclick="supReact(\''+k+'\',\'also\')">🤝 Eu também passei por isso '+(p.also||0)+'</button></div>'; }); document.getElementById("supFeed").innerHTML=h||"<p style='text-align:center'>Nenhuma superação ainda. Sê o primeiro a inspirar.</p>"; }
+function supReact(id,type){ db.ref("sups/"+id+"/"+type).transaction(function(v){ return (v||0)+1; }); }
+db.ref("posts").on("value",function(s){ allPosts=s.val()||{}; var rp=document.getElementById("rPost"); if(rp) rp.innerText=Object.keys(allPosts).length; var uniq={}; Object.values(allPosts).forEach(function(p){ if(p.code) uniq[p.code]=true; }); var ru=document.getElementById("rUnique"); if(ru) ru.innerText=Object.keys(uniq).length; var sr=document.getElementById("sundayReport"); if(sr) sr.innerText="Esta semana: "+Object.keys(allPosts).length+" desabafos, "+Object.keys(allSup).length+" superações, "+Object.values(allPosts).reduce(function(a,p){ return a+(p.pray||0); },0)+" orações."; renderFeed(); renderFavs(); });
+db.ref("sups").on("value",function(s){ allSup=s.val()||{}; renderSup(); });
+db.ref("reports").on("value",function(s){ var e=document.getElementById("rReport"); if(e) e.innerText=Object.keys(s.val()||{}).length; });
+var chatId=null, chatTimer=null, seconds=3600, typingTimeout=null;
+function startPrivate(who){ if(!confirm(who+" - Abrir conversa privada?")) return; chatId=[myId,who].sort().join("_"); openChat(who); }
+function setTyping(){ if(!chatId) return; db.ref("typing/"+chatId+"/"+myId).set(true); clearTimeout(typingTimeout); typingTimeout=setTimeout(function(){ db.ref("typing/"+chatId+"/"+myId).remove(); },2000); }
+function openChat(who){ document.getElementById("privateBox").classList.remove("hidden"); document.getElementById("withWho").innerText=who; seconds=3600; clearInterval(chatTimer); chatTimer=setInterval(function(){ seconds--; var m=Math.floor(seconds/60), s=seconds%60; document.getElementById("timer").innerText=m+":"+(s<10?"0":"")+s; if(seconds<=0){ clearInterval(chatTimer); alert("60 min acabaram"); } },1000); db.ref("chats/"+chatId).on("value",function(sn){ var v=sn.val()||{}; var h=""; Object.values(v).forEach(function(m){ h+='<div class="msg"><b>'+m.from+':</b> '+(m.text||"")+(m.seen?' <span style="color:#4CAF50;font-size:11px">✓✓ Lido</span>':' <span style="color:#999;font-size:11px">✓ Enviado</span>')+'</div>'; }); document.getElementById("chatBox").innerHTML=h; document.getElementById("chatBox").scrollTop=9999; marcarLido(); }); db.ref("typing/"+chatId).on("value",function(sn){ var t=sn.val()||{}; var other=Object.keys(t).find(function(k){ return k!==myId; }); document.getElementById("typing").innerText=other?"✍️ "+other+" está a escrever...":""; }); }
+function marcarLido(){ if(!chatId) return; db.ref("chats/"+chatId).once("value",function(sn){ var v=sn.val()||{}; Object.keys(v).forEach(function(k){ if(v[k].from!==myId) db.ref("chats/"+chatId+"/"+k+"/seen").set(true); }); }); }
+function sendChat(){ var t=document.getElementById("chatIn").value.trim(); if(!t||!chatId){ alert("Abre primeiro uma conversa"); return; } db.ref("chats/"+chatId).push({from:myId, text:t, time:Date.now()}); document.getElementById("chatIn").value=""; db.ref("typing/"+chatId+"/"+myId).remove(); }
+function thankYou(){ if(!chatId){ alert("Abre uma conversa primeiro"); return; } db.ref("chats/"+chatId).push({from:myId, text:"❤️ Obrigado, ajudaste-me!", time:Date.now()}); alert("Obrigado enviado!"); }
+function closeChat(){ clearInterval(chatTimer); document.getElementById("privateBox").classList.add("hidden"); chatId=null; }
+function beVolunteer(){ var n=document.getElementById("vNome").value, nm=document.getElementById("vNum").value; if(!n||!nm){ alert("Preenche nome e número"); return; } db.ref("volunteers").push({name:n, number:nm, approved:false}).then(function(){ alert("Pedido enviado!"); }); }
+function loadVolunteers(){ db.ref("volunteers").on("value",function(s){ var v=s.val()||{}; var h=""; Object.keys(v).forEach(function(k){ var x=v[k]; h+='<div style="border:1px solid #ddd;padding:8px;border-radius:10px;margin:6px 0"><b>'+x.name+'</b> - '+x.number+' '+(x.approved?"✅":"⏳")+' <button onclick="approveVol(\''+k+'\')">Aprovar</button> <button onclick="banUser(\''+x.name+'\')">🚫 Banir</button></div>'; }); var e=document.getElementById("volList"); if(e) e.innerHTML=h; var a=""; Object.values(v).filter(function(x){ return x.approved; }).forEach(function(x){ a+='<p><b>'+x.name+'</b> - '+x.number+'</p>'; }); document.getElementById("approvedList").innerHTML=a||"Nenhum ainda."; }); }
+function approveVol(id){ db.ref("volunteers/"+id+"/approved").set(true); alert("Aprovado"); }
+function loadReports(){ db.ref("reports").on("value",function(s){ var v=s.val()||{}; var h=""; Object.keys(v).forEach(function(k){ var x=v[k]; h+='<div style="border:1px solid #ddd;padding:8px;border-radius:10px;margin:6px 0"><b>Denúncia:</b> '+x.text+'<br><button onclick="db.ref(\'posts/'+x.postId+'\').remove();alert(\'Apagado\')">Apagar Desabafo</button> <button onclick="banUser(\''+x.by+'\')">🚫 Banir Autor</button> <button onclick="db.ref(\'reports/'+k+'\').remove()">Ignorar</button></div>'; }); var e=document.getElementById("reportList"); if(e) e.innerHTML=h||"Sem denúncias."; }); }
+function banUser(who){ if(!confirm("Banir "+who+" por 24h?")) return; db.ref("bans/"+who).set({until:Date.now()+86400000, by:"Boss"}); alert("Banido 24h"); }
+function loadBans(){ db.ref("bans").on("value",function(s){ var v=s.val()||{}; var h=""; Object.keys(v).forEach(function(k){ h+='<div>'+k+' - até '+new Date(v[k].until).toLocaleString()+' <button onclick="db.ref(\'bans/'+k+'\').remove()">Desbanir</button></div>'; }); var e=document.getElementById("banList"); if(e) e.innerHTML=h||"Ninguém banido."; }); }
+function doBackup(){ db.ref("posts").once("value",function(s){ var data={date:new Date().toISOString(), posts:s.val()}; var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}); var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="backup-"+new Date().toISOString().slice(0,10)+".json"; a.click(); db.ref("backups").push({date:Date.now(), count:Object.keys(s.val()||{}).length}); alert("Backup feito!"); }); }
+db.ref("backups").on("value",function(s){ var v=s.val()||{}; var h=""; Object.values(v).reverse().forEach(function(b){ h+="<p>📦 "+new Date(b.date).toLocaleDateString()+" - "+b.count+" desabafos</p>"; }); var el=document.getElementById("backupList"); if(el) el.innerHTML=h||""; });
+var adIdx=0; var adTimer=null;
+function uploadAds(e){ var files=Array.from(e.target.files).slice(0,11); if(files.length===0) return; var promises=files.map(function(f){ return new Promise(function(res){ var r=new FileReader(); r.onload=function(){ res(r.result); }; r.readAsDataURL(f); }); }); Promise.all(promises).then(function(results){ db.ref("ads/list").set(results).then(function(){ alert("Publicidade publicada! "+results.length+" fotos a rodar."); }); }); }
+function clearAds(){ db.ref("ads/list").remove(); document.getElementById("adsTop").innerHTML='<div style="color:#999">▶ Publicidade aqui</div>'; }
+db.ref("ads/list").on("value",function(s){ var v=s.val()||[]; if(Array.isArray(v)) allAds=v.filter(Boolean); else allAds=Object.values(v); if(allAds.length===0) return; clearInterval(adTimer); adIdx=0; showAd(); adTimer=setInterval(function(){ adIdx=(adIdx+1)%allAds.length; showAd(); },10000); });
+function showAd(){ if(allAds.length===0) return; document.getElementById("adsTop").innerHTML='<img src="'+allAds[adIdx]+'">'; document.getElementById("adCounter").innerText="Anúncio "+(adIdx+1)+" de "+allAds.length; var h=""; allAds.forEach(function(a,i){ h+='<div style="display:inline-block;margin:4px"><img src="'+a+'" style="width:60px;height:40px;object-fit:cover;border-radius:8px"></div>'; }); var admin=document.getElementById("adsListAdmin"); if(admin) admin.innerHTML=h; }
+db.ref("volunteers").on("value",function(s){ var v=s.val()||{}; var a=""; Object.values(v).filter(function(x){ return x.approved; }).forEach(function(x){ a+='<p><b>'+x.name+'</b> - '+x.number+'</p>'; }); if(a) document.getElementById("approvedList").innerHTML=a; });
+setTimeout(function(){ if(allPosts && Object.keys(allPosts).length>0){ var msg=confirm("Como estás hoje depois do teu desabafo? Carrega OK se estás MELHOR, Cancelar se estás IGUAL"); db.ref("mood").push({user:myId, mood:msg?"Melhor":"Igual", time:Date.now()}); } }, 1000);
 </script>
 </body>
 </html>
