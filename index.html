@@ -187,17 +187,15 @@ function loadAdminLive(){ db.ref("liveChat").once("value",function(s){ var v=s.v
 try{
   var todayStr=new Date().toISOString().slice(0,10);
   var lastVisit=localStorage.getItem("lastVisitDate");
-  if(lastVisit!==todayStr){
+  if(lastVisit!=todayStr){
     localStorage.setItem("lastVisitDate",todayStr);
-    db.ref("statsReal/totalVisits").transaction(function(v){ return (v||0)+1; });
-    db.ref("statsReal/visitsToday/"+todayStr).transaction(function(v){ return (v||0)+1; });
+    db.ref("visitas/total").transaction(function(v){ return (v||0)+1; });
+    db.ref("visitas/hoje/"+todayStr).transaction(function(v){ return (v||0)+1; });
   }
-  db.ref("statsReal/visitsToday/"+todayStr).on("value",function(s){ var e=document.getElementById("rVisitToday"); if(e) e.innerText=s.val()||0; });
+  db.ref("visitas/hoje/"+todayStr).on("value",function(s){ var e=document.getElementById("rVisitToday"); if(e) e.innerText=s.val()||0; });
 }catch(e){}
-try{ db.ref("online/"+myId).set(true); db.ref("online/"+myId).onDisconnect().remove(); }catch(e){}
-db.ref("statsReal/totalVisits").on("value",function(s){ var e=document.getElementById("rVisit"); if(e) e.innerText=s.val()||0; });
-db.ref("statsReal/adClicks").on("value",function(s){ var e=document.getElementById("rAd"); if(e) e.innerText=s.val()||0; });
-function adClicked(){ try{ db.ref("statsReal/adClicks").transaction(function(v){ return (v||0)+1; }); }catch(e){} }
+try{ db.ref("visitas/total").on("value",function(s){ var e=document.getElementById("rVisit"); if(e) e.innerText=s.val()||0; });
+}catch(e){}myReacton adClicked(){ try{ db.ref("statsReal/adClicks").transaction(function(v){ return (v||0)+1; }); }catch(e){} }
 db.ref("bans").on("value",function(s){ var bans=s.val()||{}; if(bans[myId]){ document.body.innerHTML="<h1 style='text-align:center;padding:40px'>Estás banido. Volta em 24h. 🙏</h1>"; } });
 function sendPost(){ var now=Date.now(); if(now-lastPostTime<60000){ alert("Espera 1 minuto"); return; } var t=document.getElementById("txt").value.trim(); if(!t){ alert("Escreve primeiro"); return; } var code=Math.floor(1000+Math.random()*9000); db.ref("posts").push({text:t, cat:"Desabafo", time:Date.now(), hug:0, heart:0, pray:0, commentsCount:0, views:0, code:code, closed:false}).then(function(){ document.getElementById("txt").value=""; alert("Publicado! Código: "+code); }).catch(function(e){ alert("Erro: "+e.message); }); lastPostTime=now; }
 function sendSup(){ var t=document.getElementById("supTxt").value.trim(); if(!t) return; db.ref("sups").push({text:t, cat:"Superação", time:Date.now(), inspired:0, also:0, code:Math.floor(1000+Math.random()*9000)}).then(function(){ document.getElementById("supTxt").value=""; alert("Superação publicada!"); }); }
